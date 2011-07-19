@@ -1,0 +1,6 @@
+DOC=$1
+LINE=$2
+SIZE=`wc -l ${DOC} | gawk '{ print $1 }'`
+MISSING=$((${SIZE}-${LINE}))
+echo DOC ${DOC} LINE ${LINE} SIZE ${SIZE} MISSING ${MISSING}
+tail -$((${MISSING}+2)) ${DOC} | head -5

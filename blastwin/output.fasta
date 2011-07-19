@@ -1,0 +1,696 @@
+BLASTN 2.2.19 [Nov-02-2008]
+
+
+Reference: Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer, 
+Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), 
+"Gapped BLAST and PSI-BLAST: a new generation of protein database search
+programs",  Nucleic Acids Res. 25:3389-3402.
+
+Query= cdub_AUG:cdub_1-g371.1  cdub_1:897801..898571 cdslen=771
+         (771 letters)
+
+Database: candida 
+           114,382 sequences; 256,247,446 total letters
+
+Searching..................................................done
+
+
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+cdub_AUG:cdub_1-g371.1  cdub_1:897801..898571 cdslen=771              252   2e-065
+CAWT_00981 | transcript encoding Candida albicans WO1 conserved ...   202   2e-050
+CAWG_00981 | gene encoding Candida albicans WO1 conserved hypoth...   202   2e-050
+gb|AAFO01000007| | CONTIG_7  | part of supercont_1.1 of Candida ...   202   2e-050
+orf19_1045.1 | transcript encoding Candida albicans SC5314 orf19...   202   2e-050
+orf19_1045 | gene encoding Candida albicans SC5314 orf19.1045 (1...   202   2e-050
+contig_1.1 of Candida albicans SC5314                                 202   2e-050
+CTRT_04749 | transcript encoding Candida tropicalis predicted pr...   163   2e-038
+CTRG_04749 | gene encoding Candida tropicalis predicted protein ...   163   2e-038
+gb|AAFN01000087| | CONTIG_87  | part of supercont_3.6 of Candida...   163   2e-038
+CPAG_04956.1 | transcript encoding Candida parapsilosis CPAG_049...    50   2e-004
+CPAG_04956 | gene encoding Candida parapsilosis CPAG_04956 (822 nt)    50   2e-004
+contig_1.140 of Candida parapsilosis                                   50   2e-004
+
+>cdub_AUG:cdub_1-g371.1  cdub_1:897801..898571 cdslen=771
+          Length = 771
+
+ Score =  252 bits (127), Expect = 2e-065
+ Identities = 127/127 (100%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 249 tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct: 249 tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+
+                                                                       
+Query: 309 taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct: 309 taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+
+                  
+Query: 369 attacgt 375
+           |||||||
+Sbjct: 369 attacgt 375
+
+
+
+ Score =  240 bits (121), Expect = 8e-062
+ Identities = 121/121 (100%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+
+                                                                       
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaatttaa 193
+           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaatttaa 193
+
+            
+Query: 194 t 194
+           |
+Sbjct: 194 t 194
+
+
+
+ Score =  139 bits (70), Expect = 2e-031
+ Identities = 70/70 (100%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 599 tagatgatgattttaaagatcctatggaacaatttatcaaagataaaaaggcaaaaaatc 658
+           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct: 599 tagatgatgattttaaagatcctatggaacaatttatcaaagataaaaaggcaaaaaatc 658
+
+                     
+Query: 659 ataaacataa 668
+           ||||||||||
+Sbjct: 659 ataaacataa 668
+
+
+
+ Score =  111 bits (56), Expect = 5e-023
+ Identities = 56/56 (100%)
+ Strand = Plus / Plus
+
+                                                                   
+Query: 508 caagagaaggatgaagagaaggatgaatttaaagatccaatggctcaatttttaac 563
+           ||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct: 508 caagagaaggatgaagagaaggatgaatttaaagatccaatggctcaatttttaac 563
+
+
+>CAWT_00981 | transcript encoding Candida albicans WO1 conserved hypothetical
+           protein (777 nt)
+          Length = 777
+
+ Score =  202 bits (102), Expect = 2e-050
+ Identities = 120/126 (95%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 249 tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+           |||| ||||||||||||||||||||||| | |||||||||||||||||||||||||||||
+Sbjct: 219 tcatcgaggatttggatttttaaaatatgcaaattttaaaagttgtatattagctattga 278
+
+                                                                       
+Query: 309 taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+           |||||||||||| || ||||| ||||||||||||||||||||||||||||||||||||||
+Sbjct: 279 taattttaatgggattaaattgggtgatcgatatttaaaagttgatcataattattataa 338
+
+                 
+Query: 369 attacg 374
+           ||||||
+Sbjct: 339 attacg 344
+
+
+
+ Score =  131 bits (66), Expect = 6e-029
+ Identities = 105/118 (88%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           |||||||||||||||||||||||||||||||||||||||| |||||||| | ||||||||
+Sbjct: 74  ggcattatgattatcgtgatacaaattatttatatattgggaatattccttataatttaa 133
+
+                                                                     
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaattt 191
+           |    |||||| ||||||  ||||||||||||||||| || ||||||||||| |||||
+Sbjct: 134 ccactaaagatttaattattatatttagtcaatatggtataccaactcatatcaattt 191
+
+
+
+ Score = 71.9 bits (36), Expect = 4e-011
+ Identities = 45/48 (93%)
+ Strand = Plus / Plus
+
+                                                           
+Query: 601 gatgatgattttaaagatcctatggaacaatttatcaaagataaaaag 648
+           |||||||| ||||||||||| |||||||||||||| ||||||||||||
+Sbjct: 625 gatgatgagtttaaagatccaatggaacaatttattaaagataaaaag 672
+
+
+
+ Score = 56.0 bits (28), Expect = 3e-006
+ Identities = 28/28 (100%)
+ Strand = Plus / Plus
+
+                                       
+Query: 529 gatgaatttaaagatccaatggctcaat 556
+           ||||||||||||||||||||||||||||
+Sbjct: 559 gatgaatttaaagatccaatggctcaat 586
+
+
+>CAWG_00981 | gene encoding Candida albicans WO1 conserved hypothetical protein
+           (777 nt)
+          Length = 777
+
+ Score =  202 bits (102), Expect = 2e-050
+ Identities = 120/126 (95%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 249 tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+           |||| ||||||||||||||||||||||| | |||||||||||||||||||||||||||||
+Sbjct: 219 tcatcgaggatttggatttttaaaatatgcaaattttaaaagttgtatattagctattga 278
+
+                                                                       
+Query: 309 taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+           |||||||||||| || ||||| ||||||||||||||||||||||||||||||||||||||
+Sbjct: 279 taattttaatgggattaaattgggtgatcgatatttaaaagttgatcataattattataa 338
+
+                 
+Query: 369 attacg 374
+           ||||||
+Sbjct: 339 attacg 344
+
+
+
+ Score =  131 bits (66), Expect = 6e-029
+ Identities = 105/118 (88%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           |||||||||||||||||||||||||||||||||||||||| |||||||| | ||||||||
+Sbjct: 74  ggcattatgattatcgtgatacaaattatttatatattgggaatattccttataatttaa 133
+
+                                                                     
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaattt 191
+           |    |||||| ||||||  ||||||||||||||||| || ||||||||||| |||||
+Sbjct: 134 ccactaaagatttaattattatatttagtcaatatggtataccaactcatatcaattt 191
+
+
+
+ Score = 71.9 bits (36), Expect = 4e-011
+ Identities = 45/48 (93%)
+ Strand = Plus / Plus
+
+                                                           
+Query: 601 gatgatgattttaaagatcctatggaacaatttatcaaagataaaaag 648
+           |||||||| ||||||||||| |||||||||||||| ||||||||||||
+Sbjct: 625 gatgatgagtttaaagatccaatggaacaatttattaaagataaaaag 672
+
+
+
+ Score = 56.0 bits (28), Expect = 3e-006
+ Identities = 28/28 (100%)
+ Strand = Plus / Plus
+
+                                       
+Query: 529 gatgaatttaaagatccaatggctcaat 556
+           ||||||||||||||||||||||||||||
+Sbjct: 559 gatgaatttaaagatccaatggctcaat 586
+
+
+>gb|AAFO01000007| | CONTIG_7  | part of supercont_1.1 of Candida albicans |
+              [1855153-3148205] | 1293053 nt
+          Length = 1293053
+
+ Score =  202 bits (102), Expect = 2e-050
+ Identities = 120/126 (95%)
+ Strand = Plus / Plus
+
+                                                                          
+Query: 249    tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+              |||| ||||||||||||||||||||||| | |||||||||||||||||||||||||||||
+Sbjct: 475515 tcatcgaggatttggatttttaaaatatgcaaattttaaaagttgtatattagctattga 475574
+
+                                                                          
+Query: 309    taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+              |||||||||||| || ||||| ||||||||||||||||||||||||||||||||||||||
+Sbjct: 475575 taattttaatgggattaaattgggtgatcgatatttaaaagttgatcataattattataa 475634
+
+                    
+Query: 369    attacg 374
+              ||||||
+Sbjct: 475635 attacg 475640
+
+
+
+ Score =  131 bits (66), Expect = 6e-029
+ Identities = 105/118 (88%)
+ Strand = Plus / Plus
+
+                                                                          
+Query: 74     ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+              |||||||||||||||||||||||||||||||||||||||| |||||||| | ||||||||
+Sbjct: 475370 ggcattatgattatcgtgatacaaattatttatatattgggaatattccttataatttaa 475429
+
+                                                                        
+Query: 134    ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaattt 191
+              |    |||||| ||||||  ||||||||||||||||| || ||||||||||| |||||
+Sbjct: 475430 ccactaaagatttaattattatatttagtcaatatggtataccaactcatatcaattt 475487
+
+
+
+ Score = 71.9 bits (36), Expect = 4e-011
+ Identities = 45/48 (93%)
+ Strand = Plus / Plus
+
+                                                              
+Query: 601    gatgatgattttaaagatcctatggaacaatttatcaaagataaaaag 648
+              |||||||| ||||||||||| |||||||||||||| ||||||||||||
+Sbjct: 475921 gatgatgagtttaaagatccaatggaacaatttattaaagataaaaag 475968
+
+
+
+ Score = 56.0 bits (28), Expect = 3e-006
+ Identities = 28/28 (100%)
+ Strand = Plus / Plus
+
+                                          
+Query: 529    gatgaatttaaagatccaatggctcaat 556
+              ||||||||||||||||||||||||||||
+Sbjct: 475855 gatgaatttaaagatccaatggctcaat 475882
+
+
+>orf19_1045.1 | transcript encoding Candida albicans SC5314 orf19.1045 (1062 nt)
+          Length = 1062
+
+ Score =  202 bits (102), Expect = 2e-050
+ Identities = 120/126 (95%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 249 tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+           |||| ||||||||||||||||||||||| | |||||||||||||||||||||||||||||
+Sbjct: 498 tcatcgaggatttggatttttaaaatatgcaaattttaaaagttgtatattagctattga 557
+
+                                                                       
+Query: 309 taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+           |||||||||||| || ||||| ||||||||||||||||||||||||||||||||||||||
+Sbjct: 558 taattttaatgggattaaattgggtgatcgatatttaaaagttgatcataattattataa 617
+
+                 
+Query: 369 attacg 374
+           ||||||
+Sbjct: 618 attacg 623
+
+
+
+ Score =  145 bits (73), Expect = 4e-033
+ Identities = 109/121 (90%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           |||||||||||||||||||||||||||||||||||||||| |||||||| | ||||||||
+Sbjct: 353 ggcattatgattatcgtgatacaaattatttatatattgggaatattccttataatttaa 412
+
+                                                                       
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaatttaa 193
+           |    |||||| ||||||  ||||||||||||||||| || |||||||||||||||||||
+Sbjct: 413 ccactaaagatttaattattatatttagtcaatatggtataccaactcatattaatttaa 472
+
+            
+Query: 194 t 194
+           |
+Sbjct: 473 t 473
+
+
+
+ Score = 71.9 bits (36), Expect = 4e-011
+ Identities = 45/48 (93%)
+ Strand = Plus / Plus
+
+                                                           
+Query: 601 gatgatgattttaaagatcctatggaacaatttatcaaagataaaaag 648
+           |||||||| ||||||||||| |||||||||||||| ||||||||||||
+Sbjct: 910 gatgatgagtttaaagatccaatggaacaatttattaaagataaaaag 957
+
+
+
+ Score = 56.0 bits (28), Expect = 3e-006
+ Identities = 28/28 (100%)
+ Strand = Plus / Plus
+
+                                       
+Query: 529 gatgaatttaaagatccaatggctcaat 556
+           ||||||||||||||||||||||||||||
+Sbjct: 838 gatgaatttaaagatccaatggctcaat 865
+
+
+>orf19_1045 | gene encoding Candida albicans SC5314 orf19.1045 (1062 nt)
+          Length = 1062
+
+ Score =  202 bits (102), Expect = 2e-050
+ Identities = 120/126 (95%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 249 tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+           |||| ||||||||||||||||||||||| | |||||||||||||||||||||||||||||
+Sbjct: 498 tcatcgaggatttggatttttaaaatatgcaaattttaaaagttgtatattagctattga 557
+
+                                                                       
+Query: 309 taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+           |||||||||||| || ||||| ||||||||||||||||||||||||||||||||||||||
+Sbjct: 558 taattttaatgggattaaattgggtgatcgatatttaaaagttgatcataattattataa 617
+
+                 
+Query: 369 attacg 374
+           ||||||
+Sbjct: 618 attacg 623
+
+
+
+ Score =  145 bits (73), Expect = 4e-033
+ Identities = 109/121 (90%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           |||||||||||||||||||||||||||||||||||||||| |||||||| | ||||||||
+Sbjct: 353 ggcattatgattatcgtgatacaaattatttatatattgggaatattccttataatttaa 412
+
+                                                                       
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaatttaa 193
+           |    |||||| ||||||  ||||||||||||||||| || |||||||||||||||||||
+Sbjct: 413 ccactaaagatttaattattatatttagtcaatatggtataccaactcatattaatttaa 472
+
+            
+Query: 194 t 194
+           |
+Sbjct: 473 t 473
+
+
+
+ Score = 71.9 bits (36), Expect = 4e-011
+ Identities = 45/48 (93%)
+ Strand = Plus / Plus
+
+                                                           
+Query: 601 gatgatgattttaaagatcctatggaacaatttatcaaagataaaaag 648
+           |||||||| ||||||||||| |||||||||||||| ||||||||||||
+Sbjct: 910 gatgatgagtttaaagatccaatggaacaatttattaaagataaaaag 957
+
+
+
+ Score = 56.0 bits (28), Expect = 3e-006
+ Identities = 28/28 (100%)
+ Strand = Plus / Plus
+
+                                       
+Query: 529 gatgaatttaaagatccaatggctcaat 556
+           ||||||||||||||||||||||||||||
+Sbjct: 838 gatgaatttaaagatccaatggctcaat 865
+
+
+>contig_1.1 of Candida albicans SC5314
+          Length = 3190737
+
+ Score =  202 bits (102), Expect = 2e-050
+ Identities = 120/126 (95%)
+ Strand = Plus / Minus
+
+                                                                          
+Query: 249    tcatagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattga 308
+              |||| ||||||||||||||||||||||| | |||||||||||||||||||||||||||||
+Sbjct: 864193 tcatcgaggatttggatttttaaaatatgcaaattttaaaagttgtatattagctattga 864134
+
+                                                                          
+Query: 309    taattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataa 368
+              |||||||||||| || ||||| ||||||||||||||||||||||||||||||||||||||
+Sbjct: 864133 taattttaatgggattaaattgggtgatcgatatttaaaagttgatcataattattataa 864074
+
+                    
+Query: 369    attacg 374
+              ||||||
+Sbjct: 864073 attacg 864068
+
+
+
+ Score =  145 bits (73), Expect = 4e-033
+ Identities = 109/121 (90%)
+ Strand = Plus / Minus
+
+                                                                          
+Query: 74     ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+              |||||||||||||||||||||||||||||||||||||||| |||||||| | ||||||||
+Sbjct: 864338 ggcattatgattatcgtgatacaaattatttatatattgggaatattccttataatttaa 864279
+
+                                                                          
+Query: 134    ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaatttaa 193
+              |    |||||| ||||||  ||||||||||||||||| || |||||||||||||||||||
+Sbjct: 864278 ccactaaagatttaattattatatttagtcaatatggtataccaactcatattaatttaa 864219
+
+               
+Query: 194    t 194
+              |
+Sbjct: 864218 t 864218
+
+
+
+ Score = 71.9 bits (36), Expect = 4e-011
+ Identities = 45/48 (93%)
+ Strand = Plus / Minus
+
+                                                              
+Query: 601    gatgatgattttaaagatcctatggaacaatttatcaaagataaaaag 648
+              |||||||| ||||||||||| |||||||||||||| ||||||||||||
+Sbjct: 863781 gatgatgagtttaaagatccaatggaacaatttattaaagataaaaag 863734
+
+
+
+ Score = 56.0 bits (28), Expect = 3e-006
+ Identities = 28/28 (100%)
+ Strand = Plus / Minus
+
+                                          
+Query: 529    gatgaatttaaagatccaatggctcaat 556
+              ||||||||||||||||||||||||||||
+Sbjct: 863853 gatgaatttaaagatccaatggctcaat 863826
+
+
+>CTRT_04749 | transcript encoding Candida tropicalis predicted protein (705 nt)
+          Length = 705
+
+ Score =  163 bits (82), Expect = 2e-038
+ Identities = 115/126 (91%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 250 catagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattgat 309
+           |||||||| |||||||||||||||||| | ||||||||||||||||| ||||| ||||||
+Sbjct: 217 catagagggtttggatttttaaaatatgcaaattttaaaagttgtattttagcaattgat 276
+
+                                                                       
+Query: 310 aattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataaa 369
+           ||||||||||||||||||||||| ||||||   || | ||||||||||||||||||||||
+Sbjct: 277 aattttaatggaataaaattaggagatcgaatattgagagttgatcataattattataaa 336
+
+                 
+Query: 370 ttacgt 375
+           ||||||
+Sbjct: 337 ttacgt 342
+
+
+
+ Score = 99.6 bits (50), Expect = 2e-019
+ Identities = 101/118 (85%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           |||||||||||||||| ||||| |||||| |||| |||||||| || ||||| ||  |||
+Sbjct: 74  ggcattatgattatcgagatacgaattatatatacattggtaacatcccattcaacctaa 133
+
+                                                                     
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaattt 191
+            |||||| |||||||||| ||| ||||||||||||||||| || || ||||| |||||
+Sbjct: 134 atgaaaaggatataattataatctttagtcaatatggaatacccacacatataaattt 191
+
+
+>CTRG_04749 | gene encoding Candida tropicalis predicted protein (705 nt)
+          Length = 705
+
+ Score =  163 bits (82), Expect = 2e-038
+ Identities = 115/126 (91%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 250 catagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattgat 309
+           |||||||| |||||||||||||||||| | ||||||||||||||||| ||||| ||||||
+Sbjct: 217 catagagggtttggatttttaaaatatgcaaattttaaaagttgtattttagcaattgat 276
+
+                                                                       
+Query: 310 aattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataaa 369
+           ||||||||||||||||||||||| ||||||   || | ||||||||||||||||||||||
+Sbjct: 277 aattttaatggaataaaattaggagatcgaatattgagagttgatcataattattataaa 336
+
+                 
+Query: 370 ttacgt 375
+           ||||||
+Sbjct: 337 ttacgt 342
+
+
+
+ Score = 99.6 bits (50), Expect = 2e-019
+ Identities = 101/118 (85%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 74  ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+           |||||||||||||||| ||||| |||||| |||| |||||||| || ||||| ||  |||
+Sbjct: 74  ggcattatgattatcgagatacgaattatatatacattggtaacatcccattcaacctaa 133
+
+                                                                     
+Query: 134 ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaattt 191
+            |||||| |||||||||| ||| ||||||||||||||||| || || ||||| |||||
+Sbjct: 134 atgaaaaggatataattataatctttagtcaatatggaatacccacacatataaattt 191
+
+
+>gb|AAFN01000087| | CONTIG_87  | part of supercont_3.6 of Candida tropicalis |
+              [899216-1255791] | 356576 nt
+          Length = 356576
+
+ Score =  163 bits (82), Expect = 2e-038
+ Identities = 115/126 (91%)
+ Strand = Plus / Plus
+
+                                                                          
+Query: 250    catagaggatttggatttttaaaatattctaattttaaaagttgtatattagctattgat 309
+              |||||||| |||||||||||||||||| | ||||||||||||||||| ||||| ||||||
+Sbjct: 144235 catagagggtttggatttttaaaatatgcaaattttaaaagttgtattttagcaattgat 144294
+
+                                                                          
+Query: 310    aattttaatggaataaaattaggtgatcgatatttaaaagttgatcataattattataaa 369
+              ||||||||||||||||||||||| ||||||   || | ||||||||||||||||||||||
+Sbjct: 144295 aattttaatggaataaaattaggagatcgaatattgagagttgatcataattattataaa 144354
+
+                    
+Query: 370    ttacgt 375
+              ||||||
+Sbjct: 144355 ttacgt 144360
+
+
+
+ Score = 99.6 bits (50), Expect = 2e-019
+ Identities = 101/118 (85%)
+ Strand = Plus / Plus
+
+                                                                          
+Query: 74     ggcattatgattatcgtgatacaaattatttatatattggtaatattccatttaatttaa 133
+              |||||||||||||||| ||||| |||||| |||| |||||||| || ||||| ||  |||
+Sbjct: 144092 ggcattatgattatcgagatacgaattatatatacattggtaacatcccattcaacctaa 144151
+
+                                                                        
+Query: 134    ctgaaaaagatataattaaaatatttagtcaatatggaattccaactcatattaattt 191
+               |||||| |||||||||| ||| ||||||||||||||||| || || ||||| |||||
+Sbjct: 144152 atgaaaaggatataattataatctttagtcaatatggaatacccacacatataaattt 144209
+
+
+>CPAG_04956.1 | transcript encoding Candida parapsilosis CPAG_04956 (822 nt)
+          Length = 822
+
+ Score = 50.1 bits (25), Expect = 2e-004
+ Identities = 91/113 (80%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 259 tttggatttttaaaatattctaattttaaaagttgtatattagctattgataattttaat 318
+           |||| |||||| |||||  | ||||||||||||||  |||| || ||||| ||||| |||
+Sbjct: 229 tttgcatttttgaaatacgccaattttaaaagttgcgtattggcaattgacaatttcaat 288
+
+                                                                
+Query: 319 ggaataaaattaggtgatcgatatttaaaagttgatcataattattataaatt 371
+           || || ||| | |||||||||   ||  | |||||||||| ||||||||||||
+Sbjct: 289 ggtattaaagtcggtgatcgaatgttgcatgttgatcatagttattataaatt 341
+
+
+>CPAG_04956 | gene encoding Candida parapsilosis CPAG_04956 (822 nt)
+          Length = 822
+
+ Score = 50.1 bits (25), Expect = 2e-004
+ Identities = 91/113 (80%)
+ Strand = Plus / Plus
+
+                                                                       
+Query: 259 tttggatttttaaaatattctaattttaaaagttgtatattagctattgataattttaat 318
+           |||| |||||| |||||  | ||||||||||||||  |||| || ||||| ||||| |||
+Sbjct: 229 tttgcatttttgaaatacgccaattttaaaagttgcgtattggcaattgacaatttcaat 288
+
+                                                                
+Query: 319 ggaataaaattaggtgatcgatatttaaaagttgatcataattattataaatt 371
+           || || ||| | |||||||||   ||  | |||||||||| ||||||||||||
+Sbjct: 289 ggtattaaagtcggtgatcgaatgttgcatgttgatcatagttattataaatt 341
+
+
+>contig_1.140 of Candida parapsilosis
+          Length = 445060
+
+ Score = 50.1 bits (25), Expect = 2e-004
+ Identities = 91/113 (80%)
+ Strand = Plus / Minus
+
+                                                                          
+Query: 259    tttggatttttaaaatattctaattttaaaagttgtatattagctattgataattttaat 318
+              |||| |||||| |||||  | ||||||||||||||  |||| || ||||| ||||| |||
+Sbjct: 240847 tttgcatttttgaaatacgccaattttaaaagttgcgtattggcaattgacaatttcaat 240788
+
+                                                                   
+Query: 319    ggaataaaattaggtgatcgatatttaaaagttgatcataattattataaatt 371
+              || || ||| | |||||||||   ||  | |||||||||| ||||||||||||
+Sbjct: 240787 ggtattaaagtcggtgatcgaatgttgcatgttgatcatagttattataaatt 240735
+
+
+  Database: candida
+    Posted date:  Feb 25, 2009  1:07 PM
+  Number of letters in database: 256,247,446
+  Number of sequences in database:  114,382
+  
+Lambda     K      H
+    1.37    0.711     1.31 
+
+Gapped
+Lambda     K      H
+    1.37    0.711     1.31 
+
+
+Matrix: blastn matrix:1 -3
+Gap Penalties: Existence: 5, Extension: 2
+Number of Sequences: 114382
+Number of Hits to DB: 2,036,930
+Number of extensions: 145734
+Number of successful extensions: 13582
+Number of sequences better than 1.0e-001: 13
+Number of HSP's gapped: 13568
+Number of HSP's successfully gapped: 37
+Length of query: 771
+Length of database: 256,247,446
+Length adjustment: 19
+Effective length of query: 752
+Effective length of database: 254,074,188
+Effective search space: 191063789376
+Effective search space used: 191063789376
+X1: 11 (21.8 bits)
+X2: 15 (29.7 bits)
+X3: 50 (99.1 bits)
+S1: 13 (26.3 bits)
+S2: 21 (42.1 bits)

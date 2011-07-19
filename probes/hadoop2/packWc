@@ -1,0 +1,32 @@
+DATABASES=( $(ls biota*) )
+
+for element in $(seq 0 $((${#DATABASES[@]} -1)))
+ do
+   BASENAME=${DATABASES[$element]}
+   SIZE=`wc -l ${BASENAME} | gawk '{print $1}'`
+   if [ ${SIZE} -gt "9999999" ]; then
+       echo ${BASENAME}
+       echo "  PACKING"
+       gzip -9 ${BASENAME}
+       echo "  PACKED"
+   else
+       echo SKIPPING ${BASENAME} WITH ${SIZE} LINES
+   fi
+done
+
+
+
+#711M 2009-11-09 03:42 39947_0_0004.wc
+#35.476.394 39947_0_0004.wc
+
+#gzip -9
+#real	01m09.109s
+#user	01m07.059s
+#sys	00m00.676s
+#118M 2009-11-09 03:42 39947_0_0004.wc.gz
+
+#bzip2 -z -9
+#real	01m38.959s
+#user	01m37.670s
+#sys	00m00.784s
+#179M 2009-11-09 03:42 39947_0_0004.wc.bz2

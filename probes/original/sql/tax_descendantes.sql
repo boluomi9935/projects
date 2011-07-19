@@ -1,0 +1,5 @@
+SELECT include.* FROM taxonomy INNER JOIN taxonomy AS include ON (include.left_value BETWEEN taxonomy.left_value AND taxonomy.right_value) WHERE taxonomy.name = "primate" ORDER BY left_value;
+
+
+SELECT taxonomy.* FROM taxonomy.taxonomy, (SELECT left_value as innerLeft, right_value as innerRight FROM taxonomy.taxonomy WHERE ncbi_taxon_id = 36911 AND name_class = "scientific name") AS insider WHERE left_value BETWEEN insider.innerLeft AND insider.innerRight ORDER BY left_value
+SELECT taxonomy.* FROM taxonomy.taxonomy, (SELECT left_value as innerLeft, right_value as innerRight FROM taxonomy.taxonomy WHERE ncbi_taxon_id = 28154 AND name_class = "scientific name") AS insider WHERE left_value BETWEEN insider.innerLeft AND insider.innerRight AND name_class = "scientific name" AND node_rank <> "no rank" ORDER BY left_value

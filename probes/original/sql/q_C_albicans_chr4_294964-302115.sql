@@ -1,0 +1,1 @@
+select * from coordinates where idOrganism = 2 and chromossome = 4 and startLig >= 294964 and startLig <= 302115;

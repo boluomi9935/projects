@@ -1,0 +1,1 @@
+SELECT organism.nameOrganism, count(*) FROM finalProbes, organism WHERE finalProbes.idOrganism = organism.idorganism GROUP BY finalProbes.idOrganism 

@@ -1,0 +1,30 @@
+## GENERAL SETUP
+verbose       = 1
+provider      = 2
+daemon        = 1
+deleteMail    = 1 # Delete mail after pop them
+popVerbose    = 0 # verbosity of pop  0* - 4
+smtpVerbose   = 0 # verbosity of smtp 0* or 1
+filterVerbose = 1 # verbosity of email counting after sender filtering
+fromFilter    = sauloal|cbs.knaw.nl # incoming mail to accept commands
+interval      = 60 # interval between email checks
+statusName    = biomail # name to appear in PS
+
+## SMTP AND POP SETUP
+pop_1       = GMail
+pop_host_1  = pop.gmail.com      # pop3 host 
+pop_user_1  = user@gmail.com  
+pop_pass_1  = passwd
+smtp_host_1 = smtp.gmail.com
+smtp_port_2 = 465
+
+pop_2       = Yahoo
+pop_host_2  = pop.mail.yahoo.com.br       # pop3 host 
+pop_user_2  = knawcbsknaw@yahoo.com.br
+pop_pass_2  = uppssalla
+smtp_host_2 = smtp.mail.yahoo.com.br
+smtp_port_1 = 465
+
+dis_numb     = 10      # number of mails to retrieve
+ssl_pop_prot = tcp # ssl pop protocol 
+ssl_pop_port = 995 # ssl pop port number (995 is what Gmail uses) 

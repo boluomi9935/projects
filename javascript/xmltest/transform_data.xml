@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Response>
+    <errorCode>error Code</errorCode>
+    <errorMessage>msg</errorMessage>
+    <ResponseParameters>
+        <className>
+                <attribute1>a</attribute1>
+                <attribute2>b</attribute2>
+        </className>
+    </ResponseParameters>
+</Response>

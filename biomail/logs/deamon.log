@@ -1,0 +1,66 @@
+6601 [2008-10-30 09:35:06] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+9950 [2008-10-30 09:37:57] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+11707 [2008-10-30 09:39:21] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+11707 [2008-10-30 09:39:25] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+11707 [2008-10-30 09:39:28] - MESSAGE FROM sauloal@yahoo.com.br SUBJECT DONE :: test SENT SUCCESSIFULLY
+15940 [2008-10-30 09:42:53] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+16517 [2008-10-30 09:43:21] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+16659 [2008-10-30 09:43:28] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+17223 [2008-10-30 09:43:54] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+17223 [2008-10-30 09:44:00] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+17223 [2008-10-30 09:44:02] - MESSAGE FROM sauloal@yahoo.com.br SUBJECT DONE :: test SENT SUCCESSIFULLY
+22521 [2008-10-30 09:48:22] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+22643 [2008-10-30 09:48:28] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+25217 [2008-10-30 09:50:37] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+25217 [2008-10-30 09:50:41] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+25217 [2008-10-30 09:50:44] - MESSAGE FROM sauloal@yahoo.com.br SUBJECT DONE :: list SENT SUCCESSIFULLY
+27064 [2008-10-30 09:52:11] - /var/biomail/progs/dnacypherENC.pm
+/var/biomail/progs/dnacypherDEC.pm
+/var/biomail/progs/echo.pm
+/var/biomail/progs/getNCBI.pm
+27064 [2008-10-30 09:52:11] - Initializing...
+27064 [2008-10-30 09:52:11] - File - biomail.pl, age - 0.0003125
+27064 [2008-10-30 09:52:11] - File - config, age - 0.000208333333333333
+27064 [2008-10-30 09:52:11] - Parent process exiting, let the deamon (27066) go...
+27066 [2008-10-30 09:52:11] - The deamon is now running...
+27066 [2008-10-30 09:52:11] - STDOUT : /var/biomail/logs/86400/14182/STDOUT27066
+27066 [2008-10-30 09:52:11] - STDERR : /var/biomail/logs/86400/14182/STDERR27066

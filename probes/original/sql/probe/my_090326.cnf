@@ -1,0 +1,78 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Default to using old password format for compatibility with mysql 3.x
+# clients (those using the mysqlclient10 compatibility package).
+old_passwords=1
+
+# To allow mysqld to connect to a MySQL Cluster management daemon, uncomment
+# these lines and adjust the connectstring as needed.
+#ndbcluster
+#ndb-connectstring="nodeid=4;host=localhost:1186"
+
+#The bigger you set this the less disk I/O is needed to access data in tables. On a dedicated database server you may set this parameter up to 80% of the machine physical memory size. Do not set it too large, though, because competition of the physical memory may cause paging in the operating system.
+innodb_buffer_pool_size=2048M
+#Number of file I/O threads in InnoDB. Normally, this should be 4, but on Windows disk I/O may benefit from a larger number.
+innodb_file_io_threads=24
+#Helps in performance tuning in heavily concurrent environments.
+innodb_thread_concurrency=24
+#Don't cache results that are bigger than this.
+query_cache_limit=16M
+#The memory allocated to store results from old queries.
+query_cache_size=16M
+
+
+
+
+#The size of the buffer used for index blocks. Increase this to get better index handling (for all reads and multiple writes) to as much as you can afford; 64M on a 256M machine that mainly runs MySQL is quite common.
+key_buffer_size=1024M
+#Each thread that needs to do a sort allocates a buffer of this size.
+sort_buffer_size=20M
+#Size of a memory pool InnoDB uses to store data dictionary information and other internal data structures. A sensible value for this might be 2M, but the more tables you have in your application the more you will need to allocate here. If InnoDB runs out of memory in this pool, it will start to allocate memory from the operating system, and write warning messages to the MySQL error log.
+innodb_additional_mem_pool_size=128M
+#This option makes InnoDB to store each created table into its own .ibd file.
+innodb_file_per_table
+
+
+#Timeout in seconds InnoDB transaction may wait for a lock before being rolled back. InnoDB automatically detects transaction deadlocks in its own lock table and rolls back the transaction. If you use the LOCK TABLES command, or other transaction-safe storage engines than InnoDB in the same transaction, then a deadlock may arise which InnoDB cannot notice. In cases like this the timeout is useful to resolve the situation.
+innodb_lock_wait_timeout=20
+
+
+#Permits the application to give the threads system a hint for the desired number of threads that should be run at the same time
+thread_concurrency=24
+
+
+#Specifies when log files are flushed to disk.
+innodb_flush_log_at_trx_commit=0
+#Method used for flushing the log files to disk.
+innodb_flush_method=O_DSYNC
+
+
+
+
+
+
+
+
+
+
+#The size of the buffer which InnoDB uses to write log to the log files on disk. Sensible values range from 1M to 8M. A big log buffer allows large transactions to run without a need to write the log to disk until the transaction commit. Thus, if you have big transactions, making the log buffer big will save disk I/O.
+innodb_log_buffer_size=4M
+
+
+
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+[ndbd]
+# If you are running a MySQL Cluster storage daemon (ndbd) on this machine,
+# adjust its connection to the management daemon here.
+# Note: ndbd init script requires this to include nodeid!
+connect-string="nodeid=2;host=localhost:1186"
+
+[ndb_mgm]
+# connection string for MySQL Cluster management tool
+connect-string="host=localhost:1186"

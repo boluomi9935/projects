@@ -1,0 +1,1 @@
+select startLig, startM13, endM13, chromossome, count, nameOrganism, sequence, total from coordinates, result20090330 where (coordinates.idOrganism = 2 and coordinates.chromossome = 4 and coordinates.startLig >= 294964 and coordinates.startLig <= 302115) and coordinates.idProbe = result20090330.probeId;

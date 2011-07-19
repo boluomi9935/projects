@@ -1,0 +1,141 @@
+<html>
+ <head>
+  <title>Magic Hat</title>
+
+	<script id="xmlid" language="xml">
+<bookstore>
+<book category="cooking">
+<title lang="en">Everyday Italian</title>
+<author>Giada De Laurentiis</author>
+<year>2005</year>
+<price>30.00</price>
+</book>
+<book category="children">
+<title lang="en">Harry Potter</title>
+<author>J K. Rowling</author>
+
+<year>2005</year>
+<price>29.99</price>
+</book>
+<book category="web">
+<title lang="en">XQuery Kick Start</title>
+<author>James McGovern</author>
+<author>Per Bothner</author>
+<author>Kurt Cagle</author>
+<author>James Linn</author>
+<author>Vaidyanathan Nagarajan</author>
+
+<year>2003</year>
+<price>49.99</price>
+</book>
+<book category="web" cover="paperback">
+<title lang="en">Learning XML</title>
+<author>Erik T. Ray</author>
+<year>2003</year>
+<price>39.95</price>
+</book>
+</bookstore>
+	</script>
+
+  <script language="JavaScript">
+
+	function returnIslandRootName()
+	{
+		var islandEl  = document.getElementById("xmlid").childNodes[0];
+		var islandVal = islandEl.nodeValue;
+		var xmlDoc    = getXmlDoc(islandVal);
+	     	//return "nops";
+	     	//return islandEl;
+	     	//return islandEl.nodeName;
+		//return islandEl.nodeValue;
+		//return islandVal;
+		var x = xmlDoc.getElementsByTagName("title");
+		var t = "lets see\n";
+		for (i=0;i<x.length;i++)
+		{ 
+			t = t + x[i].childNodes[0].nodeValue;
+			t = t + "\n";
+		}
+		//return xmlDoc;
+		return t;
+	}
+
+	function getXmlDoc(text)
+	{
+		if (window.DOMParser)
+		{
+			var parser = new DOMParser();
+			var xmlDoc = parser.parseFromString(text,"text/xml");
+			return xmlDoc;
+		}
+		else // Internet Explorer
+		{
+			var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+			xmlDoc.async = "false";
+			xmlDoc.loadXML(text); 
+			return xmlDoc;
+		} 
+	}
+	//function loadFields()
+	//{
+	  //var xmlNode = window.document.getElementsByTagName('xmlId');
+	  //var borrowerNode = xmlNode[0];//.childNodes[1];
+	  //if (borrowerNode.hasChildNodes())
+	  //{
+	    //var i = 0;
+	    //var xmlChildNode, nodeVal=;
+	    //while (borrowerNode.childNodes[i])
+	    //{
+	      //// get node
+	      //xmlChildNode = borrowerNode.childNodes[i];
+
+	      //// check nodetype
+	      //if(xmlChildNode.nodeType != 3) // #text == 3
+	      //{
+		//// get nodeValue (aka text)
+		//nodeVal += xmlChildNode.firstChild.nodeValue + ' ';
+	      //}
+	      //i++;
+	    //}
+	    //// set control value to nodeValue
+	    //return = nodeVal;
+	  //}
+	//}
+
+    function showRabbit() {
+      var hatImage = document.getElementById("topHat");
+      hatImage.setAttribute("src", "rabbit-hat.gif");
+      var button = document.getElementById("hocusPocus");
+      var area   = document.getElementById("area");
+      button.setAttribute("value", "Get back in that hat!");
+      //button.setAttribute("value", returnIslandRootName());
+      area.value = returnIslandRootName();
+      button.onclick = hideRabbit;
+    }
+
+    function hideRabbit() {
+      var hatImage = document.getElementById("topHat");
+      hatImage.setAttribute("src", "hat.jpg");
+      var button = document.getElementById("hocusPocus");
+      button.setAttribute("value", "Hocus Pocus!");
+      button.onclick = showRabbit;                                           
+    }
+  </script>
+ </head>
+
+ <body>
+  <h1 align="center">Welcome to the DOM Magic Shop!</h1>
+  <form name="magic-hat">
+   <p align="center">
+    <img src="hat.jpg" id="topHat" height="100px" width="100px"/>
+    <br /><br />
+    <input type="button" value="Hocus Pocus!" id="hocusPocus" 
+           onClick="showRabbit();" />
+   </p>
+  </form>
+  <textarea id="area" rows="20" cols="50">area</textarea>
+ </body>
+</html>
+
+
+

@@ -1,0 +1,2 @@
+HOST=$1
+ssh root@${HOST} -i saulo_nexgen.pem

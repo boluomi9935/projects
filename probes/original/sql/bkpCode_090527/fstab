@@ -1,0 +1,25 @@
+
+#
+# /etc/fstab
+# Created by anaconda on Tue Feb 10 16:02:10 2009
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or vol_id(8) for more info
+#
+UUID=c5c48931-289d-43f7-816f-d0dc11c6fe6f /                       ext3    defaults,relatime        1 1
+UUID=513ced37-711d-4588-b1b0-3f0fb2bdb8e7 /bkp_latest             ext3    defaults,relatime        1 2
+UUID=1edb5248-18cf-46c8-9e6a-1aa87c12865f /BKP                    ext3    defaults,relatime        1 2
+UUID=b03aa6a5-be52-408b-8f80-d112a9a16f9b /home                   ext3    defaults,noatime        1 2
+UUID=64c6d1fc-5ad4-424b-a571-7d0072638ead /usr                    ext3    defaults,relatime        1 2
+UUID=229511ae-744f-4d96-b56b-da7a5dfd9c64 /var                    ext3    defaults,relatime        1 2
+UUID=eefb7a79-a2ce-488e-9a73-d0033a6b7135 /boot                   ext3    defaults,relatime        1 2
+#UUID=8a6da404-8f3f-43fb-ae91-6bc49518aeda /mnt/ssd		  ext2    defaults,noatime	   1 2
+UUID=8a6da404-8f3f-43fb-ae91-6bc49518aeda /mnt/ssd		  ext2    defaults,noatime,nodiratime,nobh,nouser_xattr	   1 2
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
+UUID=cbba7f74-2db5-4f5c-a392-d567866f136e swap			  swap	  defaults	  0 0
+#UUID=f70648c2-834c-4079-92b0-56f9bef54b0f swap                    swap    defaults        0 0
+#UUID=a99eabcf-9e96-4cf0-b256-b25cb179b6f4 swap                    swap    defaults        0 0
+

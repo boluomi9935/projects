@@ -1,0 +1,24 @@
+ 1027  mkdir minfedora
+ 1033  dd if=/dev/zero of=minfedora.img bs=4M count=16
+ 1035  sudo parted minfedora.img mklabel
+msdos
+ 1036  sudo parted minfedora.img mkpart primary ext2 0 4
+ 1037  sudo parted minfedora.img set 1 boot on
+1 
+ 1038  sudo parted minfedora.img mkfs 1 ext2
+ 1042  sudo mount -o loop,offset=16384 -t ext2 minfedora.img minfedora
+
+
+#febootstrap fedora-10 --no-clean --groupinstall="core" --groupinstall="java" --groupinstall="perl" --groupinstall="Development Libraries" --groupinstall="Base" --groupinstall="Text-based Internet" --groupinstall="Perl Development" minfedoraFull
+#1.1g
+
+febootstrap fedora-10 --no-clean --groupinstall="core" --groupinstall="java" --groupinstall="perl" --groupinstall="Development Libraries" --groupinstall="Perl Development" minfedoraBasic
+
+febootstrap fedora-10 --no-clean --groupinstall="core" --groupinstall="java" minfedoraJava
+
+febootstrap fedora-10 --no-clean --groupinstall="core" --groupinstall="perl" --groupinstall="Perl Development" minfedoraPerl
+
+febootstrap fedora-10 --no-clean --groupinstall="core" minfedora
+
+
+febootstrap-to-initramfs DIR > initrd.img

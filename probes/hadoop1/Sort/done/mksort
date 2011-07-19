@@ -1,0 +1,173 @@
+SORT=./sort
+
+
+${SORT} -k 1,8 --compress-program=gzip -d -T /mnt/ssd/wc 
+
+
+#SORT=./sort
+  #export CFLAGS="-mtune=native -march=native -O3 -m64 -ffast-math  -DMEMLIM=2000 -DNCORE=4  -mfpmath=sse -mmmx -msse -msse2 -msse4 -ftree-loop-linear -ftree-loop-distribution           "
+  #time gunzip -c crypto.sort.ag.had | head -3000000 | ./mksort > /dev/null
+  #real	1m11.415s
+  #user	1m11.916s
+  #sys	0m03.493s
+
+
+#SORT=./sort_i686_F 
+  #export CFLAGS="-mtune=i686 -march=i686 -O3 -m64 -ffast-math  -DMEMLIM=2000 -DNCORE=4  -mfpmath=both  -msse -msse2 -msse4 -mmmx   -ftree-loop-linear -ftree-loop-distribution           "
+  #time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+  #real	0m14.806s
+  #user	0m16.719s
+  #sys	0m1.147s
+
+  #time gunzip -c crypto.sort.ag.had | head -3000000 | ./mksort > /dev/null
+  #real	1m10.769s
+  #user	1m11.197s
+  #sys	0m3.431s
+
+
+#SORT=.sort_core2_F
+  #export CFLAGS="-mtune=core2 -march=core2 -O3 -m64 -ffast-math  -DMEMLIM=2000 -DNCORE=4  -mfpmath=both  -msse -msse2 -msse4 -mmmx   -ftree-loop-linear -ftree-loop-distribution           "
+  #time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+  #real 0m14.854s
+  #user 0m16.810s
+  #sys  0m01.195s
+  #time gunzip -c crypto.sort.ag.had | head -3000000 | ./mksort > /dev/null
+  #real	1m10.469s
+  #user	1m10.816s
+  #sys	0m03.621s
+
+
+
+#SORT=./sort_prescott_F
+  #export CFLAGS="-mtune=prescott -march=prescott -O3 -m64 -ffast-math  -DMEMLIM=2000 -DNCORE=4  -mfpmath=both  -msse -msse2 -msse4 -mmmx   -ftree-loop-linear -ftree-loop-distribution           "
+  #time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+  #real	0m14.864s
+  #user	0m16.834s
+  #sys	0m01.199s
+  #time gunzip -c crypto.sort.ag.had | head -3000000 | ./mksort > /dev/null
+  #real	1m11.166s
+  #user	1m11.772s
+  #sys	0m03.552s
+
+
+
+#SORT=./sort_nocona_F
+  #export CFLAGS="-mtune=nocona -march=nocona -O3 -m64 -ffast-math  -DMEMLIM=2000 -DNCORE=4  -mfpmath=both  -msse -msse2 -msse4 -mmmx   -ftree-loop-linear -ftree-loop-distribution		  "
+  #time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+  #real 0m14.682s
+  #user 0m16.619s
+  #sys  0m1.197s
+  #time gunzip -c crypto.sort.ag.had | head -3000000 | ./mksort > /dev/null
+  #real	1m11.219s
+  #user	1m11.868s
+  #sys	0m03.585s
+
+
+
+#SORT=./sort_native_F
+  #export CFLAGS="-mtune=native -march=native -O3 -m64 -ffast-math  -DMEMLIM=2000 -DNCORE=4  -mfpmath=both  -msse -msse2 -msse4 -mmmx   -ftree-loop-linear  -ftree-loop-distribution		  "
+  #time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+  #real	0m14.685s
+  #user	0m16.683s
+  #sys	0m01.197s
+  #time gunzip -c crypto.sort.ag.had | head -3000000 | ./mksort > /dev/null
+  #real	1m9.725s
+  #user	1m10.321s
+  #sys	0m03.442s
+
+
+
+
+
+
+
+
+#SORT=/bin/sort
+#SORT=./sort_nothing
+#SORT=./sort_native
+  #-mtune=native -march=native
+#SORT=./sort_native_O3
+  #-mtune=native -march=native -O3
+#SORT=./sort_native_O3_64
+  #-mtune=native -march=native -O3 -mmmx -msse2  -m64 -ffast-math
+#SORT=./sort_native_O3_64_sse4
+  #-mtune=native -march=native -O3 -mmmx -msse4  -m64 -ffast-math
+#SORT=./sort_native_all
+  #-mtune=native -march=native -O3 -m64 -ffast-math  -DSEP_STATE -DUSE_DISK -DMEMLIM=2000 -DNCORE=4  -mfpmath=both  -msse4 -mmmx   -floop-interchange -floop-strip-mine -fgraphite-identity -floop-block
+#SORT=./sort_native_minimum
+  #-mtune=native -march=native -O3 -m64 -ffast-math -msse4 -mmmx
+#SORT=./sort_native_minimum_sses
+  #-mtune=native -march=native -O3 -m64 -ffast-math -mmmx -msse -msse2 -msse4
+#SORT=./sort_native_minimum_sses_NOMMX
+  #-mtune=native -march=native -O3 -m64 -ffast-math -msse -msse2 -msse4
+#SORT=./sort_native_minimum_sses_NOMMX_fmath
+  #-mtune=native -march=native -O3 -m64 -ffast-math -msse -msse2 -msse4 -ffast-math
+
+
+#INTERNAL
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	1m12.212s
+#user	1m19.340s
+#sys	0m01.309s
+
+#NOTHING
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m18.838s
+#user	0m21.479s
+#sys	0m01.186s
+
+#NATIVE
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m30.011s
+#user	0m35.131s
+#sys	0m01.145s
+
+#NATIVE_O3
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.725s
+#user	0m16.502s
+#sys	0m01.182s
+
+#NATIVE_O3_64
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.747s
+#user	0m16.692s
+#sys	0m01.155s
+
+#NATIVE_O3_64_SSE4
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.775s
+#user	0m16.730s
+#sys	0m01.218s
+
+#NATIVE_ALL
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.656s
+#user	0m16.531s
+#sys	0m1.235s
+
+#NATIVE_MINIMUM
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m30.270s
+#user	0m35.286s
+#sys	0m01.198s
+
+#NATIVE_MINIMUM_SSES
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.744s
+#user	0m16.652s
+#sys	0m01.198s
+
+#NATIVE_MINIMUM_SSES_nommx
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.724s
+#user	0m16.723s
+#sys	0m01.164s
+
+
+#sort_native_minimum_sses_NOMMX_fmath
+#time gunzip -c crypto.sort.ag.had | head -500000 | ./mksort > /dev/null
+#real	0m14.741s
+#user	0m16.769s
+#sys	0m1.164s
+

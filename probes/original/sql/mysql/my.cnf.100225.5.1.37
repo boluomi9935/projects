@@ -1,0 +1,126 @@
+[mysqld]
+#Path to the database root
+datadir=/mnt/ssd/mysql/db/db
+
+#Path to the temporary directory.
+tmpdir=/mnt/ssd/mysql/tmp
+
+#Don't allow connections via TCP/IP.
+#skip-networking
+
+#The size of the buffer used for index blocks. Increase this to get better index handling (for all reads and multiple writes) to as much as you can afford; 64M on a 256M machine that mainly runs MySQL is quite common.
+key_buffer_size=3072M
+
+#Each thread that needs to do a sort allocates a buffer of this size.
+sort_buffer_size=256M
+
+#If no specific storage engine/table type is defined in an SQL-Create statement the default type will be used.
+default-storage-engine=innodb
+
+#If no specific storage engine/table type is defined in an SQL-Create statement the default type will be used.
+#skip_innodb
+ignore_builtin_innodb
+innodb_file_format_check=1
+innodb_file_format=barracuda
+innodb_strict_mode=1
+
+
+#The bigger you set this the less disk I/O is needed to access data in tables. On a dedicated database server you may set this parameter up to 80% of the machine physical memory size. Do not set it too large, though, because competition of the physical memory may cause paging in the operating system.
+innodb_buffer_pool_size=1536M
+
+#Size of a memory pool InnoDB uses to store data dictionary information and other internal data structures. A sensible value for this might be 2M, but the more tables you have in your application the more you will need to allocate here. If InnoDB runs out of memory in this pool, it will start to allocate memory from the operating system, and write warning messages to the MySQL error log.
+innodb_additional_mem_pool_size=500M
+
+#This option makes InnoDB to store each created table into its own .ibd file.
+innodb_file_per_table=1
+
+#The size of the buffer which InnoDB uses to write log to the log files on disk. Sensible values range from 1M to 8M. A big log buffer allows large transactions to run without a need to write the log to disk until the transaction commit. Thus, if you have big transactions, making the log buffer big will save disk I/O.
+innodb_log_buffer_size=1024M
+
+#Specifies when log files are flushed to disk.
+innodb_flush_log_at_trx_commit=1
+
+#Timeout in seconds InnoDB transaction may wait for a lock before being rolled back. InnoDB automatically detects transaction deadlocks in its own lock table and rolls back the transaction. If you use the LOCK TABLES command, or other transaction-safe storage engines than InnoDB in the same transaction, then a deadlock may arise which InnoDB cannot notice. In cases like this the timeout is useful to resolve the situation.
+innodb_lock_wait_timeout=60
+
+#This is relevant only if you use multiple tablespaces in InnoDB. This specifies the maximum how many .ibd files InnoDB can keep open at one time. The minimum value for this is 10. The default is 300.
+#innodb_open_files=300
+
+#Number of file I/O threads in InnoDB. Normally, this should be 4, but on Windows disk I/O may benefit from a larger number.
+innodb_file_io_threads=8
+innodb_read_io_threads=16
+innodb_write_io_threads=8
+
+#Helps in performance tuning in heavily concurrent environments.
+innodb_thread_concurrency=16
+
+#Don't cache results that are bigger than this.
+query_cache_limit=1024M
+
+#The memory allocated to store results from old queries.
+query_cache_size=0M
+
+#Max packetlength to send/receive from to server.
+max_allowed_packet=16M
+
+#Don't resolve hostnames. All hostnames are IP's or 'localhost'.
+skip-name-resolve
+
+#Enable/disable LOAD DATA LOCAL INFILE
+local-infile
+
+#Permits the application to give the threads system a hint for the desired number of threads that should be run at the same time
+thread_concurrency=16
+
+#How many threads we should keep in a cache for reuse.
+thread_cache_size=4
+
+#If an in-memory temporary table exceeds this size, MySQL will automatically convert it to an on-disk MyISAM table.
+tmp_table_size=9191M
+
+#Size of tree cache used in bulk insert optimisation. Note that this is a limit per thread!
+bulk_insert_buffer_size=20M
+
+#Don't allow creation of heap tables bigger than this.
+max_heap_table_size=1536M
+
+#Max number of bytes in sorted records.
+max_length_for_sort_data=4M
+
+#minimal size of unit in wich space for results is allocated (last unit will be trimed after writing all result data
+query_cache_min_res_unit=6M
+
+#Buffer length for TCP/IP and socket communication.
+net_buffer_length=1M
+
+#Each thread that does a sequential scan allocates a buffer of this size for each table it scans. If you do many sequential scans, you may want to increase this value.
+read_buffer_size=48M
+
+#When reading rows in sorted order after a sort, the rows are read through this buffer to avoid a disk seeks. If not set, then it's set to the value of record_buffer.
+read_rnd_buffer_size=96M
+
+#The number of open tables for all threads.
+table_cache=100
+
+#The size of the buffer that is used for full joins.
+join_buffer_size=256M
+
+#Joins that are probably going to read more than max_join_size records return an error
+max_join_size=4095M
+
+#Can be used to restrict the total size used to cache a multi-transaction query.
+max_binlog_cache_size=4095M
+
+#Name of the socket file (Unix) or named pipe (Windows) to use.
+socket=/tmp/mysql.sock
+
+#Query cache type to use.
+query_cache_type=0
+
+#Method used for flushing the log files to disk.
+#innodb_flush_method=fdatasync
+
+#The default size of key cache blocks
+key_cache_block_size=16
+#Method used for flushing the log files to disk.
+innodb_flush_method=O_DSYNC

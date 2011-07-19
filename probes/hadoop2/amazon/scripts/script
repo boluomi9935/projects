@@ -1,0 +1,26 @@
+yum -y install curl
+yum -y install screen
+
+curl timkay.com/aws/aws -o aws
+chmod +x aws
+
+<<<<<<< HEAD
+echo "pub" > ~/.awssecret
+echo "pri" >> ~/.awssecret
+=======
+
+>>>>>>> fb7dae23553d74dd5c4008ac928fc5958ed038a7
+
+echo "" >> ~/.awssecret
+chmod g-r ~/.awssecret
+chmod o-r ~/.awssecret
+
+./aws ls probe | gawk '{print $7}' | grep output2 | grep -v "folder" > files.list
+
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { system("./aws get probe/$_ $name")} ' files.list
+
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( -f $name ) { print "\tSHARED\n"; system("cat $name \| grep \",\" > shared-$name"); system("gzip -5 shared-$name"); print "\tUNIQUE\n"; system("cat $name \| grep -v \",\" > unique-$name"); system("gzip -5 unique-$name"); unlink($name); print "\tDONE\n"; } ' files.list
+
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { print "DOWNLOADING\n"; system("./aws get probe/$_ $name"); } elsif ( -f $name ) { print "\tSHARED\n"; system("cat $name \| grep \",\" > shared-$name"); system("gzip -5 shared-$name"); print "\tUNIQUE\n"; system("cat $name \| grep -v \",\" > unique-$name"); system("gzip -5 unique-$name"); unlink($name); print "\tDONE\n"; } else { print "SKIPPING $name.. NOT EXISTING\n" }' files.list
+
+perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { print "DOWNLOADING\n"; system("./aws get probe/$_ $name"); } elsif ( -f $name ) { print "\tSHARED\n"; system("cat $name \| grep \",\" > shared-$name"); system("gzip -5 shared-$name"); print "\tUNIQUE\n"; system("cat $name \| grep -v \",\" > unique-$name"); system("gzip -5 unique-$name"); print "\tDONE\n"; } else { print "SKIPPING $name.. NOT EXISTING\n" }' files.list

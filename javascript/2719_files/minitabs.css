@@ -1,0 +1,134 @@
+/* ================================================================
+This copyright notice must be untouched at all times.
+
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/mini_tabbed_pages.html
+Copyright (c) 2005-2007 Stu Nicholls. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any
+way to fit your requirements.
+=================================================================== */
+
+#tabs {
+    width: 300px;
+    text-align: center;
+    z-index: 500;
+}
+
+#tabs ul {
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    list-style: none;
+    position: relative;
+    border-bottom: 3px solid #fff;
+}
+* html #tabs ul { border: 0; }
+
+#tabs ul li {
+    float: left;
+    display: inline;
+    width: 100px;
+    height: 39px;
+    margin: 0 0 3px 0;
+}
+* html #tabs ul li { margin: 0; } 
+
+#tabs ul li a.outer {
+   display: block;
+    width: 100px;
+    height: 39px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 3px;
+	border-bottom: 1px solid #cacaca;
+	background: #fff;
+}
+
+#tabs ul li div {
+    display: none;
+}
+
+#tabs ul li:hover {
+    padding-bottom: 172px;
+    color: #000;
+    margin-bottom: 0;
+}
+
+#tabs ul li:hover > a.outer {
+   color: #000;
+    background-position: 0 -44px;
+    height: 40px;
+    cursor: pointer;
+}
+
+* html #tabs ul li a.outer:hover {
+    padding-bottom: 170px;
+    color: #000;
+    margin-bottom: 0;
+    background-position: 0 -44px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#tabs ul li:hover div {
+    display: block;
+    padding: 5px;
+    position: absolute;
+    left: 0px;
+    top: 40px;
+    width: 290px;
+    height: 158px;
+    background: #fff url(/themes/reader/images/minitabs/dz-tabs-bg.gif) top left repeat-x;
+	border-bottom: 3px solid #fff;
+}
+
+#tabs ul li a:hover div {
+    display: block;
+    padding: 5px;
+    position: absolute;
+    left: 0px;
+    top: 40px;
+    width: 290px;
+    height: 158px;
+    background: #fff url(/themes/reader/images/minitabs/dz-tabs-bg.gif) top left repeat-x;
+	border-bottom: 3px solid #fff;
+}
+
+* html #tabs ul li:hover div,
+* html #tabs ul li a:hover div {
+    width: 290px;
+}
+
+
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+#tabs div p {
+    font-weight: normal;
+    font-size: 85%;
+    text-align: left;
+    line-height: 1.0;
+    color: #000;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+#tabs p a {
+    color: #000;
+    text-decoration: none;
+}
+#tabs p a:hover {
+    color: #000;
+    text-decoration: none;
+}
+#tabs p a strong {
+    color: #214CA3;
+}
+#tabs p a:hover strong {
+    color: #22e;
+    text-decoration: underline;
+}

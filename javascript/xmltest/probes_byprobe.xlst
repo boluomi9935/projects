@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+<html>
+  <body style="font-family:Arial;font-size:12pt;background-color:#EEEEEE">
+    <xsl:for-each select="probes/fwd">
+      <div style="background-color:red;color:white;padding:8px;padding-left=0px">
+      <span style="font-weight:bold">
+	    FWD: <xsl:value-of select="@id"/>
+      </span>
+      </div>
+      <xsl:for-each select="rev">
+        <div style="background-color:coral;color:white;padding:4px;padding-left:32px">
+        <span style="font-weight:bold">
+          REV: <xsl:value-of select="@id"/>
+        </span>
+        </div>
+        <xsl:for-each select="org">
+          <div style="background-color:lightSalmon;color:white;padding:2px;padding-left:48px">
+          <span style="font-weight:bold">
+            ORG: <xsl:value-of select="@id"/>
+          </span>
+          </div>
+          <xsl:for-each select="var">
+            <div style="background-color:peachpuff;color:black;padding:1px;padding-left:64px">
+            <span style="font-weight:bold">
+              VAR: <xsl:value-of select="@id"/>
+            </span>
+            </div>
+            <xsl:for-each select="chrom">
+              <div style="background-color:white;color:black;padding:0px;padding-left:80px">
+              <span style="font-weight:bold">
+                CHROM: <xsl:value-of select="@id"/>
+              </span>
+              </div>
+			  <table border="0" cellpadding="0" align="center" style="border-width:0px">
+				<tr bgcolor="#9acd32">
+				  <th align="left">FWD START</th>
+				  <th align="left">FWD FRAME</th>
+				  <th align="left">FWD SEQUENCE</th>
+				  <th align="left">REV START</th>
+				  <th align="left">REV FRAME</th>
+				  <th align="left">REV SEQUENCE</th>
+				  <th align="left">PRODUCT LENGTH</th>
+				</tr>
+              <xsl:for-each select="pos">
+				<tr>
+                  <td><xsl:value-of select="fwdStart"/></td>
+                  <td><xsl:value-of select="fwdFrame"/></td>
+                  <td><xsl:value-of select="fwdSeq"/></td>
+                  <td><xsl:value-of select="revStart"/></td>
+                  <td><xsl:value-of select="revFrame"/></td>
+                  <td><xsl:value-of select="revSeq"/></td>
+                  <td><xsl:value-of select="prodLength"/></td>
+				</tr>
+                  <!-- POS:    <xsl:value-of select="@id"/> -->
+                  <!-- FWDSEQ: <xsl:value-of select="fwdSeq"/> -->
+                  <!-- REVSEQ: <xsl:value-of select="revSeq"/> -->
+              </xsl:for-each> <!-- POS -->
+              </table>
+            </xsl:for-each> <!-- CHROM -->
+          </xsl:for-each> <!-- VAR -->
+        </xsl:for-each> <!-- ORG -->
+      </xsl:for-each> <!-- REV -->
+    </xsl:for-each> <!-- PROBE/FWD -->
+  </body>
+</html>
+
+</xsl:template>
+
+</xsl:stylesheet>

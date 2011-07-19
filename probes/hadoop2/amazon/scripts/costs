@@ -1,0 +1,72 @@
+transfer in		3.7gb			0.100		0.37
+transfer out	24gb			0.170		4.08
+computer hours	20ch			0.100		2.00 04h45''
+storage			(3.7+24)=28g	0.005/day	0.28 (2 days)
+											6.73
+
+transfer in		12gb			0.100		01.20
+transfer out	80gb			0.170		13.60
+computer hours	60ch			0.100		06.00 02h42''
+storage			(12+68)=80g	    0.005/day	00.50 (2 days)
+											21.30
+
+
+Candida[5475]	Candida albicans[5476],Candida parapsilosis[5480],Candida tropicalis[5482],Candida dubliniensis[42374],Candida kruisii[45561]
+grep 5475 | grep 5476| grep 5480| grep 5482| grep 42374| grep 45561
+
+./loginCustomUS ec2-67-202-4-236.compute-1.amazonaws.com
+
+
+#####AWS######
+yum install curl
+curl timkay.com/aws/aws -o aws
+chmod +x aws
+echo "pub" > ~/.awssecret
+echo "pri" >> ~/.awssecret
+echo "" >> ~/.awssecret
+chmod g-r ~/.awssecret
+chmod g-w ~/.awssecret
+chmod o-r ~/.awssecret
+./aws ls probe | gawk '{print $7}' | grep output2 | grep -v "folder" > files.list
+
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { system("./aws get probe/$_ $name") } ' files.list
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { print "\tSHARED\n"; system("cat $name \| grep \",\" > shared-$name"); system("gzip -5 shared-$name"); print "\tUNIQUE\n"; system("cat $name \| grep -v \",\" > unique-$name"); system("gzip -5 unique-$name"); print "\tDONE\n"; } ' files.list
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { print "\tSHARED\n"; system("cat $name \| grep \",\" > shared-$name"); system("gzip -5 shared-$name"); print "\tUNIQUE\n"; system("cat $name \| grep -v \",\" > unique-$name"); system("gzip -5 unique-$name"); unlink($name); print "\tDONE\n"; } ' files.list
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { print "DOWNLOADING\n"; system("./aws get probe/$_ $name"); print "\tSHARED\n"; system("cat $name \| grep \",\" > shared-$name"); system("gzip -5 shared-$name"); print "\tUNIQUE\n"; system("cat $name \| grep -v \",\" > unique-$name"); system("gzip -5 unique-$name"); unlink($name); print "\tDONE\n"; } ' files.list
+
+#perl -ne 'chomp; print "$_\n"; $name = substr($_,rindex($_, "/")+1); if ( ! -f $name ) { system("echo aws get probe/$_ $name")} ' files.list
+#perl -ne 'chomp; if (/\,/) { print STDOUT "$_\n" } else { print STDERR "$_\n" }' `ls part-00000` 1>shared 2>unique
+#./aws get probe/output2/part-00002 part-00002
+
+#####s3sync#####
+#wget http://s3.amazonaws.com/ServEdge_pub/s3sync/s3sync.tar.gz
+#tar -xzvf s3sync.tar.gz
+
+<<<<<<< HEAD
+#AWS_ACCESS_KEY_ID=pub
+#export AWS_ACCESS_KEY_ID
+
+#AWS_SECRET_ACCESS_KEY=pri
+=======
+
+#export AWS_ACCESS_KEY_ID
+
+
+>>>>>>> fb7dae23553d74dd5c4008ac928fc5958ed038a7
+#export AWS_SECRET_ACCESS_KEY
+
+#AWS_CALLING_FORMAT=SUBDOMAIN
+#export AWS_CALLING_FORMAT
+
+#./s3cmd.rb  get probe:output2/part-00003
+
+
+cat part* | grep ","    | sort -k 1,12 > probe.shared
+gzip -5 probe.shared
+
+cat part* | grep -v "," | sort -k 1,12 > probe.unique
+rm part*
+
+gzip -5 probe.unique
+
+

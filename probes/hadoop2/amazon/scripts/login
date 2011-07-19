@@ -1,0 +1,1 @@
+ssh root@ec2-79-125-61-64.eu-west-1.compute.amazonaws.com -i saulo_nexgen.pem

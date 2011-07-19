@@ -1,0 +1,59 @@
+#!/usr/bin/perl -w
+use strict;
+
+my $filterF = "filters/filters.xlst";
+my $filterN = $ARGV[0];
+my $spacing = 4;
+my $linesF = &getLinesFromFilter($filterF, $filterN);
+
+while ( my $line = <STDIN> )
+{
+    if ( $line =~ /\<LAZARUS\/\>/)
+    {
+        print "   "x$spacing, join("   "x$spacing, @$linesF);
+    } else {
+        print $line;
+    }
+}
+
+
+
+
+sub getLinesFromFilter
+{
+    my $filterFile = $_[0];
+    my $filter     = $_[1];
+    my @lines;
+    
+    open F, "<$filterFile" or die "COULD NOT OPEN FILTER $filter: $!";
+    while (my $line = <F>)
+    {
+        #print "GLOBAL : ", $line;
+        if ( $line =~ /<$filter>/ )
+        {
+            #print "  INSIDE : ", $line;
+            
+            while ( my $lineI  = <F>)
+            {
+                #print "    INTEREST : ", $lineI;
+                if ( $lineI =~ /<\/$filter>/ )
+                {
+                    #print "      LAST : ", $lineI;
+                    last;
+                } else {
+                    #print "      VALID : ", $lineI;
+                    push (@lines, $lineI);
+                }
+            }
+            #print "  OUTSIDE : ", $line;
+            last;
+        }
+    }
+    close F;
+    
+    return \@lines;
+}
+
+exit 0;
+
+1;

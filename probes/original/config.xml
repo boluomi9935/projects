@@ -1,0 +1,476 @@
+<xml>
+<!--
+TODO:
+Saulo Aflitos
+2009 09 15 16 07
+    - CREATE DIFFERENT DBS FOR EACH EXTRACTOR
+    - APPLY NEW..COLUMNS
+    - multithread BLAT
+    - merge result and result_actuator
+    - merge extractor and extractor_actuator
+    - convert bash scripts in perl scripts
+    - GIVE 5% TO TM AND GC (DONE MANUALLY)
+    - PUT EACH VARIABLE INSIDE EACH PROGRAM'S NAME E.G. GLOBAL.DIR,
+      EXTRACTOR.VERBOSE, RESULT.VERBOSE
+    - add organism name in final report
+    - unsure/sort probes which lig FIRST nuc is C>G>T>A OR CC<CG<CT<CA
+    - SET OF FINAL PROBES SHOULD HAVE APROX THE SAME SIZE.
+    - USING UNAFOLD MFOLD TOOL: NA+ = 0.35M T=60C CHECK DELTA G > 0
+    - allow NEW to load custom preferences xml
+
+
+real	044m30.101s
+user	118m04.441s
+sys	    000m35.118s
+-->
+
+
+
+
+<!--
+///////////////////////////////////////////////////////////////
+	PROBE_RUN
+///////////////////////////////////////////////////////////////
+-->
+<!-- DIRS -->
+	<currentDir>		/var/rolf		        </currentDir>        <!-- [DIR] INSTALL DIR-->
+    <indir>			    /var/rolf/input		    </indir>             <!-- [DIR] FASTA FILES LOCATION -->
+	<storageDir>		/mnt/ssd/probes		    </storageDir>        <!-- [DIR] TMP FILES DIR-->
+	<storageDirInput>	<storageDir/>/input	    </storageDirInput>   <!-- [DIR] DIR CONTAINING INPUT FASTA FILES -->
+	<storageDirDumps>	<storageDir/>/dumps	    </storageDirDumps>   <!-- [DIR] DIR FOR TMP FILES-->
+	<indirTaxonomyFile>	<indir/>/taxonomy.idx	</indirTaxonomyFile> <!-- [FILE] TAXONOMY INFORMATION OF INPUT FASTA FILES -->
+    <setupdir>          <currentDir/>/filters   </setupdir>          <!-- [DIR] filter where do serach for setup xml OPT-->
+
+<!-- BEHAVIOR -->
+	<optRate>		            1000			            </optRate>                   <!-- [BOOL] OPTMIZE SQL TABLE EACH nn ITERATIONS -->
+	<inserts>		            3			                </inserts>                   <!-- [INT] NUMBER OF CONCURRENT PROBE SEARCH AND PROBE INSERTION -->
+	<mysqlCmd>		            mysql -uroot -pcbscbs12	    </mysqlCmd>                  <!-- [STR - CMD] SQL COMMAND TO BATCH INSERT DATA ON SQL TABLE -->
+	<cleanUpStorageDirInputAll>	1	                        </cleanUpStorageDirInputAll> <!-- [BOOL] delete all files on storagedir -->
+	<cleanUpStorageDirInputDid>	1	                        </cleanUpStorageDirInputDid> <!-- [BOOL] delete all previous analized files on storagedir -->
+	<cleanUpStorageDirInputSql>	1	                        </cleanUpStorageDirInputSql> <!-- [BOOL] delete all files yet to be analyzed on storagedir -->
+	<cleanUpStorageDirDumps>	1	                        </cleanUpStorageDirDumps>    <!-- [BOOL] delete all dump files on storagedir -->
+
+<!-- INIT  SQL BEHAVIOR -->
+	<sqlDrop>		            1	    </sqlDrop>   <!-- [BOOL] drop sql database -->
+	<sqlCreate>		            1       </sqlCreate> <!-- [BOOL] create sql database -->
+	<sqlFlush>		            0	    </sqlFlush>  <!-- [BOOL] flush sql database -->
+
+<!-- [FILE] PROBE SCRIPTS NAMES -->
+	<probeExtractorScript>	<currentDir/>/probe_extractor_actuator_hadoop.pl    </probeExtractorScript> <!-- PROBE EXTRACTOR SCRIPT/COMMAND-->
+	<probeActuatorScript>	<currentDir/>/probe_extractor_actuator_hadoop.pl    </probeActuatorScript>  <!-- PROBE EXTRACTOR ACTUATOR SCRIPT/COMMAND [TODO: SOFTCODE] -->
+	<probeActuatorBash> 	<currentDir/>/actuator.sh		                    </probeActuatorBash>    <!-- DINAMICALLY GENERATED [TODO: SOFTCODE] -->
+	<probeInputScript>	    <currentDir/>/probe_insert.pl		                </probeInputScript>     <!-- PROBE INSERT: SCRIPT TO INSERT RESULT ON THE DB -->
+    <probeResultScript>     <currentDir/>/probe_result.pl                       </probeResultScript>	<!-- PROBE FILTER: SCRIPT TO FILTER RESULT ON DB -->
+
+<!-- [FILE] SQL SCRIPTS -->
+	<sqlDropScript>		    <currentDir/>/sql/sqlDrop.sh	            </sqlDropScript>  <!-- [FILE] BASH SCRIPT TO DROP TABLE -->
+	<sqlFlushScript>	    <currentDir/>/sql/sqlFlush.sh		        </sqlFlushScript> <!-- [FILE] BASH SCRIPT TO FLUSH TABLE -->
+	<sqlStartScript>	    <currentDir/>/sql/sqlStart.sh		        </sqlStartScript> <!-- [FILE] BASH SCRIPT TO CREATE TABLE -->
+    <sqlIndexScript>	    <currentDir/>/sql/probe_09_index.sql	    </sqlIndexScript> <!-- [FILE] SQL SCRIPT TO CREATE INDEX ON TABLE -->
+	<sqlOptScript>		    <currentDir/>/sql/probe_06_optimize.sql	    </sqlOptScript>   <!-- [FILE] SQL SCRIPT TO OPTMIZE TABLE -->
+
+
+
+
+<!--
+///////////////////////////////////////////////////////////////
+	PROBE_EXTRACTOR
+///////////////////////////////////////////////////////////////
+-->
+	<log>		    0 			        </log>          <!-- [INT 1-4] HOW VERBOSY  -->
+	<maxThreads>	3			        </maxThreads>   <!-- [INT] NUMBER OF THREADS IN THREADABLE PROCESSES = CORES -1 -->
+	<napTime>   	1			        </napTime>      <!-- [BOOL] SECONDS TO SLEEP BETWEEN CHECKING OF THREADS  -->
+	<outDir>	    <storageDir/>	    </outDir>       <!-- [DIR] OUTPUT DIR -->
+	<dumpDir>	    <storageDirDumps/>	</dumpDir>      <!-- [DIR] DUMP DIR - TMP FILES -->
+	<sqlDir>	    <storageDirInput/>	</sqlDir>       <!-- [DIR] SQL TMP DIR-->
+
+
+
+
+<!--
+///////////////////////////////////////////////////////////////
+	PROBE_EXTRACTOR_ACTUATOR
+///////////////////////////////////////////////////////////////
+ -->
+	<log>		        0           </log>             <!-- [INT 1-4] HOW VERBOSY  -->
+	<actuatorDelete>	0	        </actuatorDelete>  <!-- [BOOL] EXTRACTOR SHOULD RENAME FILES TO ZNM [0], DELETE THEM [1] OR DO NOTHING [-1] -->
+
+    <!-- <resetAtStart>	0               </resetAtStart> --> <!-- [BOOL] ?? TODO -->
+    <!-- <maxThreads>	<maxThreads/>   </maxThreads>   -->
+    <!-- <napTime>	    <napTime/>      </napTime>	    --> <!--  [INT] time between each attempt to start a new thread if the number of threads exceeed maxtreads -->
+	<verbose>	        0	        </verbose>          <!-- [INT 1-4] HOW VERBOSE -->
+    <insertSize>	    5000	    </insertSize>       <!-- [INT] number of registers to insert at coordinates at a time -->
+	<max_packet_size>   2000000	    </max_packet_size>  <!-- [INT] max_insertion_size in mysql configuration (in bytes) -->
+	<exportSQL>	        0	        </exportSQL>        <!-- [BOOL] EXPORT AS SQL INSERT STATEMENTS -->
+	<exportTAB>	        0	        </exportTAB>        <!-- [BOOL] EXPORT AS TAB DELIMITED LIST -->
+	<exportHAD>	        1	        </exportHAD>        <!-- [BOOL] EXPORT TO HADOOP -->
+
+    <!-- adding 5 to each tm and gc to avoid boundaries problem, e.g. similar
+    sequences excluded by one of those parameters which would be excluded
+    by similarity. be more strict AFTER excluding by similarities.
+    TODO: HARDCODE
+    -->
+
+	<exportSeq>	            1		            </exportSeq>   <!-- [BOOL] EXPORT SEQUENCES TO SQL INPUT FILES
+	                                                                OR ONLY EXPORT CHROMOSSOMES AND ORGANISMS SQL -->
+    <minRepeatLegth>        8                   </minRepeatLegth>  <!-- Total length of repetition -->
+    <minRepeatNumber>       4                   </minRepeatNumber> <!-- Number of repetitions of motif -->
+    <checkQual>             0                   </checkQual>
+
+    <probeExtFunc>	        pcrOO              </probeExtFunc><!-- NAME OF LIBRARY TO EXTRACT PROBES-->
+	<!--<probeExtFunc>	        mlpaOO              </probeExtFunc>-->  <!-- NAME OF LIBRARY TO EXTRACT PROBES-->
+
+    <!-- MLPAOO SETUP -->
+	<MLPA.maxGCLS>	        2                               </MLPA.maxGCLS>       <!-- [INT] MAX NUMBER OF CG ALLOWED IN THE LIGANT SITE (included) -->
+	<MLPA.cleverness>	    1	                            </MLPA.cleverness>    <!-- [BOOL] whether to skip elongation of m13 and skip half of lig once found a probe -->
+	<MLPA.ligLen>	        21,23,24,26,27,29,30,32,33,35,36,38,39	</MLPA.ligLen><!-- [INT, ... , INT] SIZES ALLOWED -->
+	<MLPA.ligMinGc>	        40					            </MLPA.ligMinGc>      <!-- [INT] in % 45 -->
+	<MLPA.ligMaxGc>	        65					            </MLPA.ligMaxGc>      <!-- [INT] in % 60 -->
+	<MLPA.ligMinTm>	        70					            </MLPA.ligMinTm>      <!-- [INT] in centigrades [69] 75 -->
+	<MLPA.ligMaxTm>	        87					            </MLPA.ligMaxTm>      <!-- [INT] in centigrades [76] 82 -->
+
+	<MLPA.m13Len>	        37,38,40,41,43,44,46,47,49,50	</MLPA.m13Len>      <!-- [INT, ... , INT] SIZES ALLOWED -->
+	<MLPA.m13MinGc>	        30					            </MLPA.m13MinGc>    <!-- [INT] in % 35 -->
+	<MLPA.m13MaxGc>	        65					            </MLPA.m13MaxGc>    <!-- [INT] in % 60 -->
+	<MLPA.m13MinTm>	        70					            </MLPA.m13MinTm>    <!-- [INT] in centigrades [70]  75 -->
+	<MLPA.m13MaxTm>	        95					            </MLPA.m13MaxTm>    <!-- [INT] in centigrades [100] 90 -->
+
+	<MLPA.primerFWD>	    GTGGCAGGGCGCTACGAACAA		    </MLPA.primerFWD>   <!-- [STR - DNA] PRIMER FORWARD TO FILTER -->
+	<MLPA.primerREV>	    GGACGCGCCAGCAAGATCCAATCTAGA		</MLPA.primerREV>   <!-- [STR - DNA] PRIMER REVERSE TO FILTER -->
+    <MLPA.NaK>              0.05                            </MLPA.NaK>         <!-- in M - default 35mM 0.035M project 0.05 -->
+    <MLPA.minRepeatLegth>   <minRepeatLegth/>               </MLPA.minRepeatLegth>  <!-- Total length of repetition -->
+    <MLPA.minRepeatNumber>  <minRepeatNumber/>              </MLPA.minRepeatNumber> <!-- Number of repetitions of motif -->
+    <MLPA.checkQual>        <checkQual/>                    </MLPA.checkQual>   <!-- Number of repetitive nucleotide to be considered a repeat -->
+    <MLPA.name>             mlpa                            </MLPA.name>        <!-- Number of repetitive nucleotide to be considered a repeat -->
+
+
+    <!-- PCR SETUP -->
+    <PCR.length>            30                       </PCR.length>          <!-- in bp -->
+    <PCR.minGc>             50                       </PCR.minGc>           <!-- in % -->
+    <PCR.maxGc>             80                       </PCR.maxGc>           <!-- in % -->
+    <PCR.minTm>             70                       </PCR.minTm>           <!-- in C -->
+    <PCR.maxTm>             80                       </PCR.maxTm>           <!-- in C -->
+    <PCR.minPurPyr>         35                       </PCR.minPurPyr>       <!-- in % -->
+    <PCR.maxPurPyr>         65                       </PCR.maxPurPyr>       <!-- in % -->
+    <PCR.conc_salt>         50                       </PCR.conc_salt>       <!-- in mM default  50 project  50   -->
+    <PCR.conc_mg>           1.5                      </PCR.conc_mg>         <!-- in mM default   0 project   1.5 -->
+    <PCR.conc_primer>       200                      </PCR.conc_primer>     <!-- in nM default 200 project 200   -->
+    <PCR.minRepeatLegth>    <minRepeatLegth/>        </PCR.minRepeatLegth>  <!-- Total length of repetition -->
+    <PCR.minRepeatNumber>   <minRepeatNumber/>       </PCR.minRepeatNumber> <!-- Number of repetitions of motif -->
+    <PCR.checkQual>         <checkQual/>             </PCR.checkQual>       <!-- Number of repetitive nucleotide to be considered a repeat -->
+    <PCR.name>              pcr                      </PCR.name>            <!-- Number of repetitive nucleotide to be considered a repeat -->
+
+<!--
+///////////////////////////////////////////////////////////////
+	PROBE_RESULT
+	PROBE_RESULT - BEHAVIOR
+///////////////////////////////////////////////////////////////
+ -->
+	<doCreateTmpTable>		        1	    </doCreateTmpTable>           <!-- [BOOL] create tmp table - complementar to reuse -->
+	<doAnalyzeFirst>		        1	    </doAnalyzeFirst>             <!-- [BOOL] do first step of analysis    -->
+	  <doAnalyzeFirstQuasiBlast>	1	    </doAnalyzeFirstQuasiBlast>   <!-- [BOOL] fragment distribution (rough local alignment -
+                                                                                      vector search engine google-like) #http://www.perl.com/lpt/a/713    -->
+	  <doAnalyzeFirstComplexity>	1	    </doAnalyzeFirstComplexity>   <!-- [BOOL] complexity and fold analysis -->
+	  <doAnalyzeFirstBlat>		    1	    </doAnalyzeFirstBlat>         <!-- [BOOL] RUN EXTERNAL BLAT -->
+	  <doAnalyzeFirstAlmostBlast>	0	    </doAnalyzeFirstAlmostBlast>  <!-- [BOOL] almostBlast       (distance + contains/is contained by) -->
+	  <doAnalyzeFirstNWBlast>	    0	    </doAnalyzeFirstNWBlast>      <!-- [BOOL] blastNWIterate    (rough NeedlemanWunsch global alignment internal to selected ones) -->
+	  <doAnalyzeFirstNWBlastGlobal>	0	    </doAnalyzeFirstNWBlastGlobal><!-- [BOOL] blastNWIterateTwo (rough NeedlemanWunsch global alignment against whole db) -->
+      <doAnalyzeFirstBlatInput>     1       </doAnalyzeFirstBlatInput>
+
+	<doAnalyzeExtra>		        0       </doAnalyzeExtra>             <!-- [BOOL] do second step (TODO) -->
+	<doPostProcessing>		        1       </doPostProcessing>           <!-- [BOOL] CREATE FINAL RESULT FILTERED BY ANALYSIS ALREADY PERFORMED-->
+	  <doCreateFinalTable>	    	1	    </doCreateFinalTable>         <!-- [BOOL] creates table of good results from analyze first and extra -->
+	  <doTranslateFinalTable>   	1	    </doTranslateFinalTable>      <!-- [BOOL] TRANSLATE FINAL TABLE -->
+	  <doCreateFinalTableFinal> 	1	    </doCreateFinalTableFinal>    <!-- [BOOL] generate final result with all original fields -->
+
+	<blatFolder>			        blat	</blatFolder>           <!-- [BOOL] BLAT EXECUTABLE FOLDER -->
+    <blat_min_identity>		        60  	</blat_min_identity>    <!-- [INT] BLAT MIN IDENDITY THRESHOLD -->
+	<blat_min_similarity>	        70	    </blat_min_similarity>  <!-- [INT] BLAT MIN SIMILARITY THRESHOLD -->
+
+	<originalTablePK>		        idCoordinates 				            </originalTablePK>  <!-- [STR] PRIMARY KEY (PK) OF ORIGINAL TABLE TO BE KEPT AROUND -->
+    <originalTableOrganismId>       idOrganism                              </originalTableOrganismId>
+
+    <OrganismOrganismId>            idorganism                              </OrganismOrganismId>
+    <OrganismFilename>              nameOrganism                            </OrganismFilename>
+    <OrganismTable>                 organism                                </OrganismTable>
+
+	<filterColums>			        sequenceM13,ligant,sequenceLig,sequence	</filterColums>    <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED DOWNSTREAM. IF NOT HERE IT WONT BE AVAILABLE AFTERWARDS -->
+    <extraColums>			        <originalTableOrganismId/>              </extraColums>     <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED DOWNSTREAM. IF NOT HERE IT WONT BE AVAILABLE AFTERWARDS -->
+
+
+	<quasiColumns>			        <filterColums/>		</quasiColumns>         <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY QUASI BLAST -->
+	<complexityColumns>		        <filterColums/>     </complexityColumns>    <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY COMPLEXITY -->
+	<blatColumns>			        ligant,sequence		</blatColumns>          <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY BLAT -->
+    <almostColumns>			        <quasiColumns/>		</almostColumns>        <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY ALMOST BLAST -->
+	<nwColumns>			            <quasiColumns/>		</nwColumns>            <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY NW -->
+    <ligantColumns>                 ligant              </ligantColumns>        <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY LIGANT ANALYSIS-->
+	<translateColumns>		        <filterColums/>		</translateColumns>	    <!-- [STR, ... , STR] COLUMNS TO BE TRANSLATED -->
+    <blatInputColumns>			    sequence	        </blatInputColumns>     <!-- [STR, ... , STR] COLUMNS TO BE ANALIZED BY BLAT -->
+
+
+<!--
+///////////////////////////////////////////////////////////////
+    PROBE_RESULT
+	PROBE_RESULT - SQL DB
+///////////////////////////////////////////////////////////////
+-->
+	<originalView>		complete				            </originalView>     <!-- [STR] original view  NAME   - origin of data -->
+	<originalTable>		t_originalFinal				        </originalTable>    <!-- [STR] intermediate table PREFIX - intermediate table-->
+	<finalTable>		finalProbes				            </finalTable>       <!-- [STR] final        table NAME   - final result. equals to original
+                                                                                     view but filtered -->
+	<orderBy>		    idOrganism, chromossome, startLig	</orderBy>          <!-- [STR] ORDER BY statement of final table -->
+	<primaryKey>		Idd					                </primaryKey>       <!-- [STR] PRIMARY KEY OF INTERMEDIATE TABLE - TAKE CARE TO
+                                                                                     NOT BE REPEATED -->
+	<reuse>		        200910191747	                    </reuse>            <!-- [STR] table to reuse. undef to create a new table -->
+
+	<database>		    probe		</database>         <!-- [STR] mysql database -->
+	<host>			    localhost	</host>             <!-- [STR] mysql host - localhost or 127.0.0.1 to use socket -->
+    <port>			    3306    	</port>             <!-- [STR] mysql port -->
+	<user>			    probe		</user>             <!-- [STR] mysql user -->
+	<pw>			    ''			</pw>               <!-- [STR] mysql pw -->
+	<batchInsertions>	20000		</batchInsertions>  <!-- [INT] number of batch insertions to the database -->
+	<statVerbose>		1		    </statVerbose>      <!-- [BOOL] PRINT SUMMARY OF COLUMNS -->
+
+
+<!--
+///////////////////////////////////////////////////////////////
+    PROBE_RESULT
+	PROBE_RESULT - THREADING
+///////////////////////////////////////////////////////////////
+ -->
+    <!--  NUMBER OF THREADS -->
+	<!-- <maxThreads>			<maxThreads/>	</maxThreads> -->
+    <!--  [INT] SLEEP TIME BETWEEN EACH RETRY TO ADD NEW THREADS -->
+	<!-- <napTime>			<napTime/>	</napTime> -->
+
+
+
+
+
+<!--
+///////////////////////////////////////////////////////////////
+    PROBE_RESULT
+	PROBE_RESULT - ANALYSIS
+///////////////////////////////////////////////////////////////
+ -->
+<!--
+    <NEW..name>         </NEW..name>
+    <NEW..sqlField>     </NEW..sqlField>
+    <NEW..sqlType>      </NEW..sqlType>
+    <NEW..sqlSize>      </NEW..sqlSize>
+    <NEW..sqlOpt>       </NEW..sqlOpt>
+    <NEW..mode>         </NEW..mode>
+    <NEW..order>        </NEW..order>
+    <NEW..active>       </NEW..active>
+
+    <NEW..columns>      </NEW..columns>
+    <NEW..run>          </NEW..run>
+    <NEW..function>     </NEW..function>
+    <NEW..validation>   </NEW..validation>
+    <NEW..xmlsetup>     </NEW..xmlsetup>
+
+    NAME      : analysis name to be printed
+    SQLFIELD  : field to be create on intermediate sql table to hold analysis result
+    SQLTYPE   : sql field type
+    SQLSIZE   : sql field size
+    SQLOPT    : sql field options
+    VALIDATION: sql WHERE setence to filter valid sequences
+    XMLSETUP  : optional argument. xml file containing extra parameters for each module
+
+    MODE      : 0=AUTOMATIC (toguether w/ complexity analysis);
+                1=MANUAL RUN (each run reads and saves on sql);
+                UNDEF=just create sql fields
+    ORDER     : order of execution
+    ACTIVE    : boolean. be interpreted or not.
+                case yes and run==0, will create the sql field for it but wont be run
+    COLUMNS   : columns to be analyzed. comma separated list
+    RUN       : boolean - run or not this module
+    FUNCTION  : function to be called to execute this filter
+                perl module must be on FILTER folder
+
+    EACH FUNCTION WILL REACEIVE:
+	my $name          = $_[0]; # SQL FILLING FIELD
+	my $displayName   = $_[1]; # DISPLAY NAME
+	my $commandGet    = $_[2]; # SQL COMMAND TO GET INPUT
+	my $commandUpdate = $_[3]; # SQL COMMAND TO STORE OUTPUT
+	my $commadnGetAll = $_[4]; # SQL COMMAND TO GET ALL COLLUMNS
+	%pref             = %{$_[5]}; # PREFERENCES
+	%vars             = %{$_[6]}; # VARIABLES
+-->
+
+    <NEW.quasiblast.name>           quasiblast                                                      </NEW.quasiblast.name>
+    <NEW.quasiblast.sqlField>       Similarity1                                                     </NEW.quasiblast.sqlField>
+    <NEW.quasiblast.sqlType>        INT                                                             </NEW.quasiblast.sqlType>
+    <NEW.quasiblast.sqlSize>        1                                                               </NEW.quasiblast.sqlSize>
+    <NEW.quasiblast.sqlOpt>         UNSIGNED                                                        </NEW.quasiblast.sqlOpt>
+    <NEW.quasiblast.mode>           1                                                               </NEW.quasiblast.mode>
+    <NEW.quasiblast.order>          0                                                               </NEW.quasiblast.order>
+    <NEW.quasiblast.active>         1                                                               </NEW.quasiblast.active>
+    <NEW.quasiblast.columns>        <quasiColumns/>                                                 </NEW.quasiblast.columns>
+    <NEW.quasiblast.run>            <doAnalyzeFirstQuasiBlast/>                                     </NEW.quasiblast.run>
+    <NEW.quasiblast.function>       similarity1_quasiblast::sthAnalizeSimilarity1                   </NEW.quasiblast.function>
+    <NEW.quasiblast.validation>     `<intermediateTable/>`.`<NEW.quasiblast.sqlField/>` IS NULL     </NEW.quasiblast.validation>
+    <NEW.quasiblast.xmlsetup>        <setupdir/>/similarity1_quasiblast.xml                         </NEW.quasiblast.xmlsetup>
+
+    <NEW.AnalysisResult.name>       Complexity                                          </NEW.AnalysisResult.name>
+    <NEW.AnalysisResult.sqlField>   AnalysisResult                                      </NEW.AnalysisResult.sqlField>
+    <NEW.AnalysisResult.sqlType>    INT                                                 </NEW.AnalysisResult.sqlType>
+    <NEW.AnalysisResult.sqlSize>    4                                                   </NEW.AnalysisResult.sqlSize>
+    <NEW.AnalysisResult.sqlOpt>     UNSIGNED                                            </NEW.AnalysisResult.sqlOpt>
+    <NEW.AnalysisResult.mode>       0                                                   </NEW.AnalysisResult.mode>
+    <NEW.AnalysisResult.order>      1                                                   </NEW.AnalysisResult.order>
+    <NEW.AnalysisResult.active>     1                                                   </NEW.AnalysisResult.active>
+    <NEW.AnalysisResult.columns>    <complexityColumns/>                                </NEW.AnalysisResult.columns>
+    <NEW.AnalysisResult.run>        <doAnalyzeFirstComplexity/>                         </NEW.AnalysisResult.run>
+    <NEW.AnalysisResult.function>   similarity6_complexity::sthAnalizeFoldComplexity    </NEW.AnalysisResult.function>
+    <NEW.AnalysisResult.validation> (`<intermediateTable/>`.`<NEW.AnalysisResult.sqlField/>` = 0 OR `<intermediateTable/>`.`<NEW.AnalysisResult.sqlField/>` IS NULL)    </NEW.AnalysisResult.validation>
+    <NEW.AnalysisResult.xmlsetup>   <setupdir/>/similarity6_complexity.xml              </NEW.AnalysisResult.xmlsetup>
+
+            <NEW.complexity.name>           undef         </NEW.complexity.name>
+            <NEW.complexity.sqlField>       Complexity    </NEW.complexity.sqlField>
+            <NEW.complexity.sqlType>        INT           </NEW.complexity.sqlType>
+            <NEW.complexity.sqlSize>        1             </NEW.complexity.sqlSize>
+            <NEW.complexity.sqlOpt>         UNSIGNED      </NEW.complexity.sqlOpt>
+            <NEW.complexity.mode>           undef         </NEW.complexity.mode>
+            <NEW.complexity.order>          undef         </NEW.complexity.order>
+            <NEW.complexity.active>         1             </NEW.complexity.active>
+            <NEW.complexity.columns>        undef         </NEW.complexity.columns>
+            <NEW.complexity.run>            undef         </NEW.complexity.run>
+            <NEW.complexity.function>       undef         </NEW.complexity.function>
+            <NEW.complexity.validation>     undef         </NEW.complexity.validation>
+
+            <NEW.Folding.name>              undef         </NEW.Folding.name>
+            <NEW.Folding.sqlField>          Folding       </NEW.Folding.sqlField>
+            <NEW.Folding.sqlType>           INT           </NEW.Folding.sqlType>
+            <NEW.Folding.sqlSize>           3             </NEW.Folding.sqlSize>
+            <NEW.Folding.sqlOpt>            UNSIGNED      </NEW.Folding.sqlOpt>
+            <NEW.Folding.mode>              undef         </NEW.Folding.mode>
+            <NEW.Folding.order>             undef         </NEW.Folding.order>
+            <NEW.Folding.active>            1             </NEW.Folding.active>
+            <NEW.Folding.columns>           undef         </NEW.Folding.columns>
+            <NEW.Folding.run>               undef         </NEW.Folding.run>
+            <NEW.Folding.function>          undef         </NEW.Folding.function>
+            <NEW.Folding.validation>        undef         </NEW.Folding.validation>
+
+            <NEW.FildingLig.name>           undef         </NEW.FildingLig.name>
+            <NEW.FoldingLig.sqlField>       FoldingLig    </NEW.FoldingLig.sqlField>
+            <NEW.FoldingLig.sqlType>        INT           </NEW.FoldingLig.sqlType>
+            <NEW.FoldingLig.sqlSize>        3             </NEW.FoldingLig.sqlSize>
+            <NEW.FoldingLig.sqlOpt>         UNSIGNED      </NEW.FoldingLig.sqlOpt>
+            <NEW.FoldingLig.mode>           undef         </NEW.FoldingLig.mode>
+            <NEW.FoldingLig.order>          undef         </NEW.FoldingLig.order>
+            <NEW.FoldingLig.active>         1             </NEW.FoldingLig.active>
+            <NEW.FoldingLig.columns>        undef         </NEW.FoldingLig.columns>
+            <NEW.FoldingLig.run>            undef         </NEW.FoldingLig.run>
+            <NEW.FoldingLig.function>       undef         </NEW.FoldingLig.function>
+            <NEW.FoldingLig.validation>     undef         </NEW.FoldingLig.validation>
+
+            <NEW.FoldingM13.name>           undef         </NEW.FoldingM13.name>
+            <NEW.FoldingM13.sqlField>       FoldingM13    </NEW.FoldingM13.sqlField>
+            <NEW.FoldingM13.sqlType>        INT           </NEW.FoldingM13.sqlType>
+            <NEW.FoldingM13.sqlSize>        3             </NEW.FoldingM13.sqlSize>
+            <NEW.FoldingM13.sqlOpt>         UNSIGNED      </NEW.FoldingM13.sqlOpt>
+            <NEW.FoldingM13.mode>           undef         </NEW.FoldingM13.mode>
+            <NEW.FoldingM13.order>          undef         </NEW.FoldingM13.order>
+            <NEW.FoldingM13.active>         1             </NEW.FoldingM13.active>
+            <NEW.FoldingM13.run>            undef         </NEW.FoldingM13.run>
+            <NEW.FoldingM13.columns>        undef         </NEW.FoldingM13.columns>
+            <NEW.FoldingM13.function>       undef         </NEW.FoldingM13.function>
+            <NEW.FoldingM13.validation>     undef         </NEW.FoldingM13.validation>
+
+    <NEW.externalBlat.name>         external blat         </NEW.externalBlat.name>
+    <NEW.externalBlat.sqlField>     Similarity5           </NEW.externalBlat.sqlField>
+    <NEW.externalBlat.sqlType>      INT                   </NEW.externalBlat.sqlType>
+    <NEW.externalBlat.sqlSize>      3                     </NEW.externalBlat.sqlSize>
+    <NEW.externalBlat.sqlOpt>       UNSIGNED              </NEW.externalBlat.sqlOpt>
+    <NEW.externalBlat.mode>         1                     </NEW.externalBlat.mode>
+    <NEW.externalBlat.order>        2                     </NEW.externalBlat.order>
+    <NEW.externalBlat.active>       1                     </NEW.externalBlat.active>
+    <NEW.externalBlat.columns>      <blatColumns/>                                                      </NEW.externalBlat.columns>
+    <NEW.externalBlat.run>          <doAnalyzeFirstBlat/>                                               </NEW.externalBlat.run>
+    <NEW.externalBlat.function>     similarity5_externalblat::sthAnalizeSimilarity5                     </NEW.externalBlat.function>
+    <NEW.externalBlat.validation>   `<intermediateTable/>`.`<NEW.externalBlat.sqlField/>` IS NULL       </NEW.externalBlat.validation>
+    <NEW.externalBlat.xmlsetup>     <setupdir/>/similarity5_externalblat.xml                            </NEW.externalBlat.xmlsetup>
+
+    <NEW.almostBlast.name>            almostBlast     </NEW.almostBlast.name>
+    <NEW.almostBlast.sqlField>        Similarity2     </NEW.almostBlast.sqlField>
+    <NEW.almostBlast.sqlType>         INT             </NEW.almostBlast.sqlType>
+    <NEW.almostBlast.sqlSize>         3               </NEW.almostBlast.sqlSize>
+    <NEW.almostBlast.sqlOpt>          UNSIGNED        </NEW.almostBlast.sqlOpt>
+    <NEW.almostBlast.mode>            1               </NEW.almostBlast.mode>
+    <NEW.almostBlast.order>           3               </NEW.almostBlast.order>
+    <NEW.almostBlast.active>          0               </NEW.almostBlast.active>
+    <NEW.almostBlast.columns>        <almostColumns/>                                               </NEW.almostBlast.columns>
+    <NEW.almostBlast.run>             <doAnalyzeFirstAlmostBlast/>                                  </NEW.almostBlast.run>
+    <NEW.almostBlast.function>        similarity2_almostblast::sthAnalizeSimilarity2                </NEW.almostBlast.function>
+    <NEW.almostBlast.validation>      `<intermediateTable/>`.`<NEW.almostBlast.name/>` IS NULL      </NEW.almostBlast.validation>
+    <NEW.almostBlast.xmlsetup>        <setupdir/>/similarity2_almostblast.xml                       </NEW.almostBlast.xmlsetup>
+
+    <NEW.blastNWIterate.name>         blastNWIterate      </NEW.blastNWIterate.name>
+    <NEW.blastNWIterate.sqlField>     Similarity3         </NEW.blastNWIterate.sqlField>
+    <NEW.blastNWIterate.sqlType>      INT                 </NEW.blastNWIterate.sqlType>
+    <NEW.blastNWIterate.sqlSize>      5                   </NEW.blastNWIterate.sqlSize>
+    <NEW.blastNWIterate.sqlOpt>       UNSIGNED            </NEW.blastNWIterate.sqlOpt>
+    <NEW.blastNWIterate.mode>         1                   </NEW.blastNWIterate.mode>
+    <NEW.blastNWIterate.order>        4                   </NEW.blastNWIterate.order>
+    <NEW.blastNWIterate.active>       0                   </NEW.blastNWIterate.active>
+    <NEW.blastNWIterate.columns>      <nwColumns/>                                                      </NEW.blastNWIterate.columns>
+    <NEW.blastNWIterate.run>          <doAnalyzeFirstNWBlast/>                                          </NEW.blastNWIterate.run>
+    <NEW.blastNWIterate.function>     similarity3_blastNWI::sthAnalizeSimilarity3                       </NEW.blastNWIterate.function>
+    <NEW.blastNWIterate.validation>   `<intermediateTable/>`.`<NEW.blastNWIterate.name/>` IS NULL       </NEW.blastNWIterate.validation>
+    <NEW.blastNWIterate.xmlsetup>      <setupdir/>/similarity3_blastNWI.xml                             </NEW.blastNWIterate.xmlsetup>
+
+    <NEW.NWBlastGlobal.name>         NWBlastGlobal          </NEW.NWBlastGlobal.name>
+    <NEW.NWBlastGlobal.sqlField>     Similarity4            </NEW.NWBlastGlobal.sqlField>
+    <NEW.NWBlastGlobal.sqlType>      INT                    </NEW.NWBlastGlobal.sqlType>
+    <NEW.NWBlastGlobal.sqlSize>      5                      </NEW.NWBlastGlobal.sqlSize>
+    <NEW.NWBlastGlobal.sqlOpt>       UNSIGNED               </NEW.NWBlastGlobal.sqlOpt>
+    <NEW.NWBlastGlobal.mode>         1                      </NEW.NWBlastGlobal.mode>
+    <NEW.NWBlastGlobal.order>        5                      </NEW.NWBlastGlobal.order>
+    <NEW.NWBlastGlobal.active>       0                      </NEW.NWBlastGlobal.active>
+    <NEW.NWBlastGlobal.columns>      <nwColumns/>                                                   </NEW.NWBlastGlobal.columns>
+    <NEW.NWBlastGlobal.run>          <doAnalyzeFirstNWBlastGlobal/>                                 </NEW.NWBlastGlobal.run>
+    <NEW.NWBlastGlobal.function>     similarity4_blastNWG::sthAnalizeSimilarity4                    </NEW.NWBlastGlobal.function>
+    <NEW.NWBlastGlobal.validation>   `<intermediateTable/>`.`<NEW.NWBlastGlobal.name/>` IS NULL     </NEW.NWBlastGlobal.validation>
+    <NEW.NWBlastGlobal.xmlsetup>     <setupdir/>/similarity4_blastNWG.xml                           </NEW.NWBlastGlobal.xmlsetup>
+
+    <NEW.ligant.name>               Ligant              </NEW.ligant.name>
+    <NEW.ligant.sqlField>           ligant              </NEW.ligant.sqlField>
+    <NEW.ligant.sqlType>            CHAR                </NEW.ligant.sqlType>
+    <NEW.ligant.sqlSize>            20                  </NEW.ligant.sqlSize>
+    <NEW.ligant.sqlOpt>             BINARY              </NEW.ligant.sqlOpt>
+    <NEW.ligant.mode>               1                   </NEW.ligant.mode>
+    <NEW.ligant.order>              6                   </NEW.ligant.order>
+    <NEW.ligant.active>             0                   </NEW.ligant.active>
+    <NEW.ligant.columns>            <ligantColumns/>    </NEW.ligant.columns>
+    <NEW.ligant.run>                0                   </NEW.ligant.run>
+    <NEW.ligant.function>           undef               </NEW.ligant.function>
+    <NEW.ligant.validation>         undef               </NEW.ligant.validation>
+
+    <NEW.ligantUnique.name>         ligant Unique       </NEW.ligantUnique.name>
+    <NEW.ligantUnique.sqlField>     ligantunique        </NEW.ligantUnique.sqlField>
+    <NEW.ligantUnique.sqlType>      INT                 </NEW.ligantUnique.sqlType>
+    <NEW.ligantUnique.sqlSize>      1                   </NEW.ligantUnique.sqlSize>
+    <NEW.ligantUnique.sqlOpt>       UNSIGNED            </NEW.ligantUnique.sqlOpt>
+    <NEW.ligantUnique.mode>         1                   </NEW.ligantUnique.mode>
+    <NEW.ligantUnique.order>        7                   </NEW.ligantUnique.order>
+    <NEW.ligantUnique.active>       0                   </NEW.ligantUnique.active>
+    <NEW.ligantUnique.columns>      <ligantColumns/>    </NEW.ligantUnique.columns>
+    <NEW.ligantUnique.run>          0                   </NEW.ligantUnique.run>
+    <NEW.ligantUnique.function>     undef               </NEW.ligantUnique.function>
+    <NEW.ligantUnique.validation>   undef               </NEW.ligantUnique.validation>
+
+    <NEW.externalBlatInput.name>         external blat input   </NEW.externalBlatInput.name>
+    <NEW.externalBlatInput.sqlField>     Similarity8           </NEW.externalBlatInput.sqlField>
+    <NEW.externalBlatInput.sqlType>      INT                   </NEW.externalBlatInput.sqlType>
+    <NEW.externalBlatInput.sqlSize>      3                     </NEW.externalBlatInput.sqlSize>
+    <NEW.externalBlatInput.sqlOpt>       UNSIGNED              </NEW.externalBlatInput.sqlOpt>
+    <NEW.externalBlatInput.mode>         1                     </NEW.externalBlatInput.mode>
+    <NEW.externalBlatInput.order>        8                     </NEW.externalBlatInput.order>
+    <NEW.externalBlatInput.active>       1                     </NEW.externalBlatInput.active>
+    <NEW.externalBlatInput.columns>      <blatInputColumns/>                                                      </NEW.externalBlatInput.columns>
+    <NEW.externalBlatInput.run>          <doAnalyzeFirstBlatInput/>                                               </NEW.externalBlatInput.run>
+    <NEW.externalBlatInput.function>     similarity8_externalBlatInput::sthAnalizeSimilarity8                     </NEW.externalBlatInput.function>
+    <NEW.externalBlatInput.validation>   `<intermediateTable/>`.`<NEW.externalBlatInput.sqlField/>` IS NULL       </NEW.externalBlatInput.validation>
+    <NEW.externalBlatInput.xmlsetup>     <setupdir/>/similarity8_externalBlatInput.xml                            </NEW.externalBlatInput.xmlsetup>
+</xml>

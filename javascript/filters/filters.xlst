@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+
+<!-- http://stackoverflow.com/questions/586631/extract-a-subset-of-xml-file-using-xsl -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <available>
+        <important_full/>
+
+
+        <anno/>
+        <anno_full/>
+
+        
+        <class/>
+        <class_shared/>
+        <class_splice/>
+        <class_unique/>
+
+        <class_full/>
+        <class_shared_full/>
+        <class_splice_full/>
+        <class_unique_full/>
+
+
+        <data/>
+        <data_FPKM1/>
+        <data_FPKM2/>
+        <data_FPKM12/>
+        <data_FPKM1n2/>
+        <data_FPKM2n1/>
+        
+        <data_full/>
+        <data_FPKM1_full/>
+        <data_FPKM2_full/>
+        <data_FPKM12_full/>
+        <data_FPKM1n2_full/>
+        <data_FPKM2n1_full/>
+
+
+        <span/>
+        <span_hash/>
+        <span_hash_diffge3/>
+        <span_hash_diffge30/>
+        <span_hash_diffge300/>
+        <span_hash_diffge3000/>
+   
+        <span_string/>
+        
+        <span_full/>
+        <span_hash_full/>
+        <span_hash_diffge3_full/>
+        <span_hash_diffge30_full/>
+        <span_hash_diffge300_full/>
+        <span_hash_diffge3000_full/>
+
+        <span_string_full/>
+        
+    </available>
+<!--
+IMPORTANT
+-->
+    <important_full>
+        <xsl:variable name="limitD" select="30"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="
+        ((span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR))
+        or
+        (class/unique)
+        ">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </important_full>
+    
+    
+    
+
+<!--
+ANNOTATION
+-->
+    <anno>
+        <xsl:if test="anno/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="anno"/>
+            </xsl:copy>
+        </xsl:if>
+    </anno>
+
+    <anno_full>
+        <xsl:if test="anno/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </anno_full>
+
+<!--
+CLASS
+-->
+    <class>
+        <xsl:if test="class/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="class"/>
+            </xsl:copy>
+        </xsl:if>
+    </class>
+
+    <class_shared>
+        <xsl:if test="class/shared/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="class"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_shared>
+
+    <class_splice>
+        <xsl:if test="class/splice/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="class"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_splice>
+
+    <class_unique>
+        <xsl:if test="class/unique">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="class"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_unique>
+    
+
+
+    
+
+    
+
+    
+
+
+
+    <class_full>
+        <xsl:if test="class/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_full>
+
+    <class_shared_full>
+        <xsl:if test="class/shared/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_shared_full>
+    
+    <class_splice_full>
+        <xsl:if test="class/splice/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_splice_full>
+
+    <class_unique_full>
+        <xsl:if test="class/unique">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </class_unique_full>
+    
+
+
+    
+
+
+
+<!--
+DATA
+--> 
+    <data>
+        <xsl:if test="data/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="data"/>
+            </xsl:copy>
+        </xsl:if>
+    </data>
+    
+    
+    <data_FPKM1>
+        <xsl:if test="data/left/right/el/FPKM_1/node()">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="data"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM1>
+    
+    <data_FPKM2>
+        <xsl:if test="data/left/right/el/FPKM_2/node()">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="data"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM2>
+    
+    
+    <data_FPKM12>
+        <xsl:if test="data/left/right/el/FPKM_1/node() and data/left/right/el/FPKM_2/node()">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="data"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM12>
+    
+    <data_FPKM1n2>
+        <xsl:if test="(data/left/right/el/FPKM_1/node()) and (not(data/left/right/el/FPKM_2/node()))">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="data"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM1n2>
+    
+    <data_FPKM2n1>
+        <xsl:if test="(not(data/left/right/el/FPKM_1/node())) and (data/left/right/el/FPKM_2/node())">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="data"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM2n1>
+    
+
+    
+
+
+
+
+    <data_full>
+        <xsl:if test="data/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_full>
+
+    <data_FPKM1_full>
+        <xsl:if test="data/left/right/el/FPKM_1/node()">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM1_full>
+    
+    <data_FPKM2_full>
+        <xsl:if test="data/left/right/el/FPKM_2/node()">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM2_full>
+    
+    <data_FPKM12_full>
+        <xsl:if test="data/left/right/el/FPKM_1/node() and data/left/right/el/FPKM_2/node()">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM12_full>
+    
+    
+    <data_FPKM1n2_full>
+        <xsl:if test="(data/left/right/el/FPKM_1/node()) and (not(data/left/right/el/FPKM_2/node()))">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM1n2_full>
+    
+
+    
+    <data_FPKM2n1_full>
+        <xsl:if test="(not(data/left/right/el/FPKM_1/node())) and (data/left/right/el/FPKM_2/node())">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </data_FPKM2n1_full>
+    
+
+
+    
+
+
+    
+
+<!--
+SPAN
+-->
+    <span>
+        <xsl:if test="span/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="span"/>
+            </xsl:copy>
+        </xsl:if>
+    </span>
+
+    <span_hash>
+        <xsl:if test="span/hash/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:for-each select="span">
+                    <xsl:copy-of select="hash"/>
+                </xsl:for-each>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash>
+
+    <span_hash_diffge3>
+        <xsl:variable name="limitD" select="3"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:for-each select="span">
+                    <xsl:copy-of select="hash"/>
+                </xsl:for-each>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge3>
+
+    <span_hash_diffge30>
+        <xsl:variable name="limitD" select="30"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:for-each select="span">
+                    <xsl:copy-of select="hash"/>
+                </xsl:for-each>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge30>
+
+    <span_hash_diffge300>
+        <xsl:variable name="limitD" select="300"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:for-each select="span">
+                    <xsl:copy-of select="hash"/>
+                </xsl:for-each>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge300>
+
+    <span_hash_diffge3000>
+        <xsl:variable name="limitD" select="3000"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:for-each select="span">
+                    <xsl:copy-of select="hash"/>
+                </xsl:for-each>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge3000>
+    
+
+
+
+
+
+    
+
+    <span_string>
+        <xsl:if test="span/string">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:for-each select="span">
+                    <xsl:copy-of select="string"/>
+                </xsl:for-each>
+            </xsl:copy>
+        </xsl:if>
+    </span_string>
+    
+
+
+
+
+    
+    <span_full>
+        <xsl:if test="span/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_full>
+
+
+    <span_hash_full>
+        <xsl:if test="span/hash/*">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_full>
+
+    <span_hash_diffge3_full>
+        <xsl:variable name="limitD" select="3"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge3_full>
+
+    <span_hash_diffge30_full>
+        <xsl:variable name="limitD" select="30"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge30_full>
+
+    <span_hash_diffge300_full>
+        <xsl:variable name="limitD" select="300"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge300_full>
+
+    <span_hash_diffge3000_full>
+        <xsl:variable name="limitD" select="3000"/>
+        <xsl:variable name="limitR" select="1 div $limitD"/>
+        <xsl:if test="(span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR)">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_hash_diffge3000_full>
+
+    <span_string_full>
+        <xsl:if test="span/string">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:if>
+    </span_string_full>
+
+
+
+</xsl:stylesheet>

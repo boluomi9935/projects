@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="generator" content="MediaWiki 1.13.5" />
+		<meta name="keywords" content="BioSQL,BioSQL/Windows,Seq,SeqIO,SeqRecord" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Biopython (en)" />
+		<link title="Creative Commons" type="application/rdf+xml" href="/w/index.php?title=BioSQL&amp;action=creativecommons" rel="meta" />
+		<link rel="copyright" href="http://www.gnu.org/copyleft/fdl.html" />
+		<link rel="alternate" type="application/rss+xml" title="Biopython RSS Feed" href="http://www.biopython.org/w/index.php?title=Special:RecentChanges&amp;feed=rss" />
+		<link rel="alternate" type="application/atom+xml" title="Biopython Atom Feed" href="http://www.biopython.org/w/index.php?title=Special:RecentChanges&amp;feed=atom" />
+		<title>BioSQL - Biopython</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/w/skins/common/shared.css?164";
+			@import "/w/skins/monobook/main.css?164";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="/w/skins/common/commonPrint.css?164" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/w/skins/monobook/IE50Fixes.css?164";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/w/skins/monobook/IE55Fixes.css?164";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/w/skins/monobook/IE60Fixes.css?164";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/w/skins/monobook/IE70Fixes.css?164";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/w/skins/common/IEFixes.js?164"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/w/skins";
+var wgArticlePath = "/wiki/$1";
+var wgScriptPath = "/w";
+var wgScript = "/w/index.php";
+var wgVariantArticlePath = false;
+var wgActionPaths = [];
+var wgServer = "http://www.biopython.org";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "BioSQL";
+var wgTitle = "BioSQL";
+var wgAction = "view";
+var wgArticleId = "1480";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "2519";
+var wgVersion = "1.13.5";
+var wgEnableAPI = true;
+var wgEnableWriteAPI = false;
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="/w/skins/common/wikibits.js?164"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="/w/skins/common/ajax.js?164"></script>
+		<script type="text/javascript" src="/w/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/w/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/w/index.php?title=-&action=raw&gen=css&maxage=18000&useskin=monobook";
+/*]]>*/</style>
+	</head>
+<body class="mediawiki ns-0 ltr page-BioSQL">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">BioSQL</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Biopython</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><a href="http://www.biosql.org/wiki/Main_Page" class="external text" title="http://www.biosql.org/wiki/Main_Page" rel="nofollow">BioSQL</a> is a joint effort between the <a href="http://open-bio.org/" class="external text" title="http://open-bio.org/" rel="nofollow">OBF</a> projects (BioPerl, BioJava etc) to support a shared database schema for storing sequence data.  In theory, you could load a GenBank file into the database with BioPerl, then using Biopython extract this from the database as a record object with featues - and get more or less the same thing as if you had loaded the GenBank file directly as a <a href="/wiki/SeqRecord" title="SeqRecord">SeqRecord</a> using <a href="/wiki/SeqIO" title="SeqIO">SeqIO</a>.
+</p><p>We have some existing documentation (<a href="http://biopython.org/DIST/docs/biosql/python_biosql_basic.html" class="external text" title="http://biopython.org/DIST/docs/biosql/python_biosql_basic.html" rel="nofollow">HTML</a>, <a href="http://biopython.org/DIST/docs/biosql/python_biosql_basic.pdf" class="external text" title="http://biopython.org/DIST/docs/biosql/python_biosql_basic.pdf" rel="nofollow">PDF</a>) for the Biopython interfaces to BioSQL, covering installing Python database adaptors and basic usage of BioSQL.  This is a little old, and I am hoping to use this wiki page to update the above documentation in future.
+</p><p>The following text applies to Biopython 1.45 or later (and won't work with Biopython 1.44).
+</p>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Installation"><span class="tocnumber">1</span> <span class="toctext">Installation</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Installing_Required_Software"><span class="tocnumber">1.1</span> <span class="toctext">Installing Required Software</span></a></li>
+<li class="toclevel-2"><a href="#Downloading_the_BioSQL_Schema_.26_Scripts"><span class="tocnumber">1.2</span> <span class="toctext">Downloading the BioSQL Schema &amp; Scripts</span></a></li>
+<li class="toclevel-2"><a href="#Creating_the_empty_database"><span class="tocnumber">1.3</span> <span class="toctext">Creating the empty database</span></a>
+<ul>
+<li class="toclevel-3"><a href="#MySQL"><span class="tocnumber">1.3.1</span> <span class="toctext">MySQL</span></a></li>
+<li class="toclevel-3"><a href="#PostgreSQL"><span class="tocnumber">1.3.2</span> <span class="toctext">PostgreSQL</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#NCBI_Taxonomy"><span class="tocnumber">1.4</span> <span class="toctext">NCBI Taxonomy</span></a></li>
+<li class="toclevel-2"><a href="#Running_the_unit_tests"><span class="tocnumber">1.5</span> <span class="toctext">Running the unit tests</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Creating_a_.28sub.29_database"><span class="tocnumber">2</span> <span class="toctext">Creating a (sub) database</span></a></li>
+<li class="toclevel-1"><a href="#Loading_Sequences_into_a_database"><span class="tocnumber">3</span> <span class="toctext">Loading Sequences into a database</span></a></li>
+<li class="toclevel-1"><a href="#Extracting_Sequences_from_the_database"><span class="tocnumber">4</span> <span class="toctext">Extracting Sequences from the database</span></a></li>
+<li class="toclevel-1"><a href="#Deleting_a_.28sub.29_database"><span class="tocnumber">5</span> <span class="toctext">Deleting a (sub) database</span></a></li>
+<li class="toclevel-1"><a href="#How_is_the_data_stored"><span class="tocnumber">6</span> <span class="toctext">How is the data stored</span></a></li>
+<li class="toclevel-1"><a href="#MySQL_Tips_and_Tricks"><span class="tocnumber">7</span> <span class="toctext">MySQL Tips and Tricks</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Installation"></a><h1> <span class="mw-headline"> Installation </span></h1>
+<p>This is fairly complicated - partly because there are so many options. For example, you can use a range of different SQL database packages (we'll focus on MySQL), you can have the database on your own computer (the assumption here) or on a separate server, and of course there are usernames and passwords associated with database.  And finally the details will also vary depending on your operating system.
+</p><p>This text is based in part on the <a href="http://code.open-bio.org/svnweb/index.cgi/biosql/view/biosql-schema/trunk/INSTALL" class="external text" title="http://code.open-bio.org/svnweb/index.cgi/biosql/view/biosql-schema/trunk/INSTALL" rel="nofollow">BioSQL schema INSTALL instructions</a>, which also covers alternatives to MySQL.
+</p>
+<a name="Installing_Required_Software"></a><h2> <span class="mw-headline"> Installing Required Software </span></h2>
+<p>You will need to install some database software plus the associated python library so that Biopython can "talk" to the database.  In this example we'll talk about the most common choice, MySQL.  How you do this will also depend on your operating system, for example on a Debian or Ubuntu Linux machine try this:
+</p>
+<pre>sudo apt-get install mysql-common mysql-server python-mysqldb
+</pre>
+<p>It will also be important to have perl (to run some of the setup scripts).  Again, on a Debian or Ubuntu Linux machine try this:
+</p>
+<pre>sudo apt-get install perl
+</pre>
+<p>You may find perl is already installed.
+</p><p>For Windows users, see <a href="/wiki/BioSQL/Windows" title="BioSQL/Windows">BioSQL/Windows</a>.
+</p>
+<a name="Downloading_the_BioSQL_Schema_.26_Scripts"></a><h2> <span class="mw-headline"> Downloading the BioSQL Schema &amp; Scripts </span></h2>
+<p>Once the software is installed, your next task is to setup a database and import the BioSQL schema (i.e. setup the relevant tables within the database).  See <a href="http://www.biosql.org/wiki/Downloads" class="external text" title="http://www.biosql.org/wiki/Downloads" rel="nofollow">BioSQL downloads</a> -- you'll need to unzip the archive.
+</p><p>Alternatively to get the very latest BioSQL, check out their SVN repository.  
+Or, navigate to the relevant schema file for your database and download just that, e.g. <a href="http://code.open-bio.org/svnweb/index.cgi/biosql/view/biosql-schema/trunk/sql/biosqldb-mysql.sql" class="external text" title="http://code.open-bio.org/svnweb/index.cgi/biosql/view/biosql-schema/trunk/sql/biosqldb-mysql.sql" rel="nofollow">biosqldb-mysql.sql</a> for MySQL.  You will also want the NCBI Taxonomy loading perl script, <a href="http://code.open-bio.org/svnweb/index.cgi/biosql/view/biosql-schema/trunk/scripts/load_ncbi_taxonomy.pl" class="external text" title="http://code.open-bio.org/svnweb/index.cgi/biosql/view/biosql-schema/trunk/scripts/load_ncbi_taxonomy.pl" rel="nofollow">load_ncbi_taxonomy.pl</a>.
+</p>
+<a name="Creating_the_empty_database"></a><h2> <span class="mw-headline"> Creating the empty database </span></h2>
+<a name="MySQL"></a><h3> <span class="mw-headline"> MySQL </span></h3>
+<p>The following command line should create a new database on your own computer called <i>bioseqdb</i>, belonging to the <i>root</i> user account:
+</p>
+<pre>mysqladmin -u root create bioseqdb
+</pre>
+<p>We can then tell MySQL to load the BioSQL scheme we downloaded above.  Change to the scripts subdirectory from the unzipped BioSQL download, then:
+</p>
+<pre>mysql -u root bioseqdb &lt; biosqldb-mysql.sql
+</pre>
+<p>You can have a quick play using the mysql command line tool, for example:
+</p>
+<pre>mysql --user=root bioseqdb -e "show tables"
+</pre>
+<p>giving:
+</p>
+<pre>+----------------------------+
+| Tables_in_bioseqdb         |
++----------------------------+
+| biodatabase                |
+| bioentry                   |
+| bioentry_dbxref            |
+| bioentry_path              |
+| bioentry_qualifier_value   |
+| bioentry_reference         |
+| bioentry_relationship      |
+| biosequence                |
+| comment                    |
+| dbxref                     |
+| dbxref_qualifier_value     |
+| location                   |
+| location_qualifier_value   |
+| ontology                   |
+| reference                  |
+| seqfeature                 |
+| seqfeature_dbxref          |
+| seqfeature_path            |
+| seqfeature_qualifier_value |
+| seqfeature_relationship    |
+| taxon                      |
+| taxon_name                 |
+| term                       |
+| term_dbxref                |
+| term_path                  |
+| term_relationship          |
+| term_relationship_term     |
+| term_synonym               |
++----------------------------+
+</pre>
+<p>Or, to look inside a table:
+</p>
+<pre>mysql --user=root bioseqdb -e "select * from bioentry;"
+</pre>
+<p>This should return no rows as the table is empty.
+</p>
+<a name="PostgreSQL"></a><h3> <span class="mw-headline"> PostgreSQL </span></h3>
+<p>First you need to set up user permissions, if you are not sure how to do this, try:
+</p>
+<pre> su - postgres
+ createuser &lt;your user name&gt;
+</pre>
+<p>Then, assuming you are logged-in as &lt;your user name&gt; and Postgres is running on the local machine, you should be able to do the following:
+</p>
+<pre>createdb biosqldb
+psql bioseqdb &lt; biosqldb-pg.sql
+</pre>
+<p>Run <i>psql</i> and type enter <i>\d &lt;ENTER&gt;</i> to see all the entities created.
+</p>
+<a name="NCBI_Taxonomy"></a><h2> <span class="mw-headline"> NCBI Taxonomy </span></h2>
+<p>The BioSQL package includes a perl script under scripts/load_ncbi_taxonomy.pl to download and update the taxonomy tables.
+The script should be able to download the files it needs from the <a href="ftp://ftp.ncbi.nih.gov/pub/taxonomy/" class="external text" title="ftp://ftp.ncbi.nih.gov/pub/taxonomy/" rel="nofollow">NCBI taxonomy FTP site</a> automatically.
+</p><p>Prior to Biopython 1.49, if you wanted to work with the NCBI taxonomy database it was good idea to pre-load the NCBI taxonomy before you start trying to load sequences into the database.  This isn't so important with Biopython 1.49 onwards, where you can instead opt to have the information needed downloaded as needed from Entrez.
+</p><p>To update the NCBI taxonomy, change to the scripts subdirectory from the unzipped BioSQL download, then:
+</p>
+<pre>./load_ncbi_taxonomy.pl --dbname bioseqdb --driver mysql --dbuser root --download true
+</pre>
+<p>For PostgreSQL you need to have the perl DBD-Pg module installed and substitute <i>Pg</i> for <i>mysql</i> in the above command.
+</p><p>There is about 10MB to fetch, so it can take a little while (and doesn't give any feedback while this happens).  If you are worried, open a file browser window and check to see it is downloading a file called taxdump.tar.gz to the taxdata subdirectory.
+</p><p>You should see this output at the command prompt - be warned that some of these steps do take a while (especially <i>rebuilding nested set left/right values</i>):
+</p>
+<pre>Loading NCBI taxon database in taxdata:
+        ... retrieving all taxon nodes in the database
+        ... reading in taxon nodes from nodes.dmp
+        ... insert / update / delete taxon nodes
+        ... (committing nodes)
+        ... rebuilding nested set left/right values
+        ... reading in taxon names from names.dmp
+        ... deleting old taxon names
+        ... inserting new taxon names
+        ... cleaning up
+Done.
+</pre>
+<p>This might be a good point for a tea break - I didn't time this but it was over ten minutes.
+</p><p>One the initial tables have been populated, re-running the script is much faster.  You can run this script again to update the taxonomy tables, which the NCBI do add to regularly.  You may want to setup a scheduled job to do this automatically (say once a fortnight).
+</p><p>P.S. It is a particularly good idea to do update the taxonomy if you will be working with the left/right values in the taxon table (see also <a href="http://bugzilla.open-bio.org/show_bug.cgi?id=2493" class="external text" title="http://bugzilla.open-bio.org/show_bug.cgi?id=2493" rel="nofollow">BioSQL enhancement request 2493</a>).  Biopython ignores these optional fields when loading or retrieving sequences - instead using just the parent link.  See <a href="http://www.oreillynet.com/pub/a/network/2002/11/27/bioconf.html" class="external free" title="http://www.oreillynet.com/pub/a/network/2002/11/27/bioconf.html" rel="nofollow">http://www.oreillynet.com/pub/a/network/2002/11/27/bioconf.html</a> for more about how this alternative tree representation works.
+</p>
+<a name="Running_the_unit_tests"></a><h2> <span class="mw-headline"> Running the unit tests </span></h2>
+<p>Because there are so many ways you could have setup your BioSQL database, you have to tell the unit test a few bits of information by editing the file Tests/setup_BioSQL.py and filling in the following fields:
+</p>
+<pre class="python" style="font-family:monospace;">DBDRIVER = <span style="color: #483d8b;">'MySQLdb'</span>
+DBTYPE = <span style="color: #483d8b;">'mysql'</span></pre>
+<p>and a little lower down,
+</p>
+<pre class="python" style="font-family:monospace;">DBHOST = <span style="color: #483d8b;">'localhost'</span>
+DBUSER = <span style="color: #483d8b;">'root'</span>
+DBPASSWD = <span style="color: #483d8b;">''</span>
+TESTDB = <span style="color: #483d8b;">'biosql_test'</span></pre>
+<p>Change these to match your setup.  You can then run the BioSQL unit tests as normal, e.g.
+</p>
+<pre>python run_tests.py test_BioSQL test_BioSQL_SeqIO
+</pre>
+<p>For PostgreSQL, use:
+</p>
+<pre class="python" style="font-family:monospace;">DBDRIVER = <span style="color: #483d8b;">'psycopg'</span>
+DBTYPE = <span style="color: #483d8b;">'pg'</span></pre>
+<p>or:
+</p>
+<pre class="python" style="font-family:monospace;">DBDRIVER = <span style="color: #483d8b;">'psycopg2'</span>
+DBTYPE = <span style="color: #483d8b;">'pg'</span></pre>
+<p>depending on which of the Python bindings you want to install.
+</p>
+<a name="Creating_a_.28sub.29_database"></a><h1> <span class="mw-headline"> Creating a (sub) database </span></h1>
+<p>BioSQL lets us define named "sub" databases or "namespaces" within the single SQL database (which we called <i>bioseqdb</i> earlier).  For this example, lets create a one for some orchid sequences:
+</p>
+<pre class="python" style="font-family:monospace;"><span style="color: #ff7700;font-weight:bold;">from</span> BioSQL <span style="color: #ff7700;font-weight:bold;">import</span> BioSeqDatabase
+server = BioSeqDatabase.<span style="color: black;">open_database</span><span style="color: black;">&#40;</span>driver=<span style="color: #483d8b;">&quot;MySQLdb&quot;</span>, <span style="color: #dc143c;">user</span>=<span style="color: #483d8b;">&quot;root&quot;</span>,
+                     passwd = <span style="color: #483d8b;">&quot;&quot;</span>, host = <span style="color: #483d8b;">&quot;localhost&quot;</span>, db=<span style="color: #483d8b;">&quot;bioseqdb&quot;</span><span style="color: black;">&#41;</span>
+db = server.<span style="color: black;">new_database</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;orchids&quot;</span>, description=<span style="color: #483d8b;">&quot;Just for testing&quot;</span><span style="color: black;">&#41;</span>
+server.<span style="color: black;">adaptor</span>.<span style="color: black;">commit</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span></pre>
+<p>(If you are using PostgreSQL rather than MySQL, just change the driver argument to "psycopg" instead. The same applies to the other examples in this document)
+</p><p>The call <i>server.adaptor.commit()</i> tells the database to save the changes so far (commit the SQL transaction).  It is up to you to decide when to commit the SQL transaction(s), and/or rollback changes, rather than having Biopython try and decide for you and risk getting it wrong.  See <i>Explicit is better than implicit</i> (<a href="http://www.python.org/dev/peps/pep-0020/" class="external text" title="http://www.python.org/dev/peps/pep-0020/" rel="nofollow">The Zen of Python</a>) and <a href="http://bugzilla.open-bio.org/show_bug.cgi?id=2395" class="external text" title="http://bugzilla.open-bio.org/show_bug.cgi?id=2395" rel="nofollow">bug 2395</a>.
+</p><p>There should now be a single row in the <i>biodatabase</i> table for
+our new orchid namespace.  You can check this at the command line:
+</p><p>MySQL:
+</p>
+<pre>mysql --user=root bioseqdb -e "select * from biodatabase;"
+</pre>
+<p>PostgreSQL:
+</p>
+<pre>psql -c "SELECT * FROM biodatabase;" bioseqdb
+</pre>
+<p>Which should give something like this (assuming you haven't done any other testing yet):
+</p>
+<pre>+----------------+---------+-----------+------------------+
+| biodatabase_id | name    | authority | description      |
++----------------+---------+-----------+------------------+
+|              1 | orchids | NULL      | Just for testing |
++----------------+---------+-----------+------------------+
+</pre>
+<p>Now that we have setup an <i>orchids</i> namespace within our <i>biosqldb</i> MySQL database, lets add some sequences to it.
+</p>
+<a name="Loading_Sequences_into_a_database"></a><h1> <span class="mw-headline"> Loading Sequences into a database </span></h1>
+<p>When loading sequences into a BioSQL database with Biopython we have to provide annotated <a href="/wiki/SeqRecord" title="SeqRecord">SeqRecord</a> objects.  This gives us another excuse to use the <a href="/wiki/SeqIO" title="SeqIO">SeqIO</a> module! A quick recap on reading in sequences as SeqRecords, based on one of the orchid examples in the Biopython Tutorial:
+</p>
+<pre class="python" style="font-family:monospace;"><span style="color: #ff7700;font-weight:bold;">from</span> Bio <span style="color: #ff7700;font-weight:bold;">import</span> Entrez
+<span style="color: #ff7700;font-weight:bold;">from</span> Bio <span style="color: #ff7700;font-weight:bold;">import</span> SeqIO
+handle = Entrez.<span style="color: black;">efetch</span><span style="color: black;">&#40;</span>db=<span style="color: #483d8b;">&quot;nuccore&quot;</span>, <span style="color: #008000;">id</span>=<span style="color: #483d8b;">&quot;6273291,6273290,6273289&quot;</span>, rettype=<span style="color: #483d8b;">&quot;genbank&quot;</span><span style="color: black;">&#41;</span>
+<span style="color: #ff7700;font-weight:bold;">for</span> seq_record <span style="color: #ff7700;font-weight:bold;">in</span> SeqIO.<span style="color: black;">parse</span><span style="color: black;">&#40;</span>handle, <span style="color: #483d8b;">&quot;genbank&quot;</span><span style="color: black;">&#41;</span>&nbsp;:
+    <span style="color: #ff7700;font-weight:bold;">print</span> seq_record.<span style="color: #008000;">id</span>, seq_record.<span style="color: black;">description</span><span style="color: black;">&#91;</span>:<span style="color: #ff4500;">50</span><span style="color: black;">&#93;</span> + <span style="color: #483d8b;">&quot;...&quot;</span>
+    <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #483d8b;">&quot;Sequence length&nbsp;%i,&quot;</span> <span style="color: #66cc66;">%</span> <span style="color: #008000;">len</span><span style="color: black;">&#40;</span>seq_record.<span style="color: black;">seq</span><span style="color: black;">&#41;</span>,
+    <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #483d8b;">&quot;from:&nbsp;%s&quot;</span> <span style="color: #66cc66;">%</span> seq_record.<span style="color: black;">annotations</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'source'</span><span style="color: black;">&#93;</span>
+handle.<span style="color: black;">close</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span></pre>
+<p>The expected output is below, note we have three records with a total of nine features:
+</p>
+<pre>AF191665.1 Opuntia marenae rpl16 gene; chloroplast gene for c...
+Sequence length 902, 3 features, from: chloroplast Opuntia marenae
+AF191664.1 Opuntia clavata rpl16 gene; chloroplast gene for c...
+Sequence length 899, 3 features, from: chloroplast Grusonia clavata
+AF191663.1 Opuntia bradtiana rpl16 gene; chloroplast gene for...
+Sequence length 899, 3 features, from: chloroplast Opuntia bradtianaa
+</pre>
+<p>Now, instead of printing things on screen, let's add these three records to a new (empty) <i>orchid</i> database:
+</p>
+<pre class="python" style="font-family:monospace;"><span style="color: #ff7700;font-weight:bold;">from</span> Bio <span style="color: #ff7700;font-weight:bold;">import</span> Entrez
+<span style="color: #ff7700;font-weight:bold;">from</span> Bio <span style="color: #ff7700;font-weight:bold;">import</span> SeqIO
+<span style="color: #ff7700;font-weight:bold;">from</span> BioSQL <span style="color: #ff7700;font-weight:bold;">import</span> BioSeqDatabase
+server = BioSeqDatabase.<span style="color: black;">open_database</span><span style="color: black;">&#40;</span>driver=<span style="color: #483d8b;">&quot;MySQLdb&quot;</span>, <span style="color: #dc143c;">user</span>=<span style="color: #483d8b;">&quot;root&quot;</span>,
+                     passwd = <span style="color: #483d8b;">&quot;&quot;</span>, host = <span style="color: #483d8b;">&quot;localhost&quot;</span>, db=<span style="color: #483d8b;">&quot;bioseqdb&quot;</span><span style="color: black;">&#41;</span>
+db = server<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;orchids&quot;</span><span style="color: black;">&#93;</span>
+handle = Entrez.<span style="color: black;">efetch</span><span style="color: black;">&#40;</span>db=<span style="color: #483d8b;">&quot;nuccore&quot;</span>, <span style="color: #008000;">id</span>=<span style="color: #483d8b;">&quot;6273291,6273290,6273289&quot;</span>, rettype=<span style="color: #483d8b;">&quot;genbank&quot;</span><span style="color: black;">&#41;</span>
+db.<span style="color: black;">load</span><span style="color: black;">&#40;</span>SeqIO.<span style="color: black;">parse</span><span style="color: black;">&#40;</span>handle, <span style="color: #483d8b;">&quot;genbank&quot;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span>
+server.<span style="color: black;">adaptor</span>.<span style="color: black;">commit</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span></pre>
+<p>Again, you must explicitly call <i>server.adaptor.commit()</i> to record the SQL transaction which is otherwise left pending.
+</p><p>The <i>db.load()</i> function should have returned the number of records loaded (three in this example), and again have a look in the database and you should see new rows in several tables.
+</p><p>The <i>bioentry</i> and <i>biosequence</i> tables should have three new rows:
+</p>
+<pre>mysql --user=root bioseqdb -e "select * from bioentry;"
+mysql --user=root bioseqdb -e "select * from biosequence;"
+</pre>
+<p>The should also be nine new features:
+</p>
+<pre>mysql --user=root bioseqdb -e "select * from seqfeature;"
+</pre>
+<p>Next, we'll try and load these three records back from the database.
+</p>
+<a name="Extracting_Sequences_from_the_database"></a><h1> <span class="mw-headline"> Extracting Sequences from the database </span></h1>
+<p>This continues from the previous example, where we loaded three records into an <i>orchids</i> database (namespace):
+</p>
+<pre class="python" style="font-family:monospace;"><span style="color: #ff7700;font-weight:bold;">from</span> BioSQL <span style="color: #ff7700;font-weight:bold;">import</span> BioSeqDatabase
+server = BioSeqDatabase.<span style="color: black;">open_database</span><span style="color: black;">&#40;</span>driver=<span style="color: #483d8b;">&quot;MySQLdb&quot;</span>, <span style="color: #dc143c;">user</span>=<span style="color: #483d8b;">&quot;root&quot;</span>,
+                     passwd = <span style="color: #483d8b;">&quot;&quot;</span>, host = <span style="color: #483d8b;">&quot;localhost&quot;</span>, db=<span style="color: #483d8b;">&quot;bioseqdb&quot;</span><span style="color: black;">&#41;</span>
+db = server<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;orchids&quot;</span><span style="color: black;">&#93;</span>
+<span style="color: #ff7700;font-weight:bold;">for</span> identifier <span style="color: #ff7700;font-weight:bold;">in</span> <span style="color: black;">&#91;</span><span style="color: #483d8b;">'6273291'</span>, <span style="color: #483d8b;">'6273290'</span>, <span style="color: #483d8b;">'6273289'</span><span style="color: black;">&#93;</span>&nbsp;:
+    seq_record = db.<span style="color: black;">lookup</span><span style="color: black;">&#40;</span>gi=identifier<span style="color: black;">&#41;</span>
+    <span style="color: #ff7700;font-weight:bold;">print</span> seq_record.<span style="color: #008000;">id</span>, seq_record.<span style="color: black;">description</span><span style="color: black;">&#91;</span>:<span style="color: #ff4500;">50</span><span style="color: black;">&#93;</span> + <span style="color: #483d8b;">&quot;...&quot;</span>
+    <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #483d8b;">&quot;Sequence length&nbsp;%i,&quot;</span> <span style="color: #66cc66;">%</span> <span style="color: #008000;">len</span><span style="color: black;">&#40;</span>seq_record.<span style="color: black;">seq</span><span style="color: black;">&#41;</span></pre>
+<p>Giving:
+</p>
+<pre>AF191665.1 Opuntia marenae rpl16 gene; chloroplast gene for c...
+Sequence length 902
+AF191664.1 Opuntia clavata rpl16 gene; chloroplast gene for c...
+Sequence length 899
+AF191663.1 Opuntia bradtiana rpl16 gene; chloroplast gene for...
+Sequence length 899
+</pre>
+<p>The objects you get back from BioSQL act like a <a href="/wiki/SeqRecord" title="SeqRecord">SeqRecord</a> object with a <a href="/wiki/Seq" title="Seq">Seq</a> object as the sequence, but they are not exactly the same.  You actually get their BioSQL database equivalent, a <b>DBSeqRecord</b> object with a <b>DBSeq</b> object for the sequence.  These will only load the sequence and annotation from the database on demand.
+</p>
+<a name="Deleting_a_.28sub.29_database"></a><h1> <span class="mw-headline"> Deleting a (sub) database </span></h1>
+<p>As mentioned above, BioSQL lets us define named "sub" databases (aka namespaces) within the single SQL database (which we called <i>bioseqdb</i>).  In the previous example, we created a sub-database for some orchid sequences.  The following code will delete the <i>orchid</i> database (and all the records in it):
+</p>
+<pre class="python" style="font-family:monospace;"><span style="color: #ff7700;font-weight:bold;">from</span> BioSQL <span style="color: #ff7700;font-weight:bold;">import</span> BioSeqDatabase
+server = BioSeqDatabase.<span style="color: black;">open_database</span><span style="color: black;">&#40;</span>driver=<span style="color: #483d8b;">&quot;MySQLdb&quot;</span>, <span style="color: #dc143c;">user</span>=<span style="color: #483d8b;">&quot;root&quot;</span>,
+                     passwd = <span style="color: #483d8b;">&quot;&quot;</span>, host = <span style="color: #483d8b;">&quot;localhost&quot;</span>, db=<span style="color: #483d8b;">&quot;bioseqdb&quot;</span><span style="color: black;">&#41;</span>
+server.<span style="color: black;">remove_database</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;orchids&quot;</span><span style="color: black;">&#41;</span>
+server.<span style="color: black;">adaptor</span>.<span style="color: black;">commit</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span></pre>
+<p>Again, you must explicitly finialise the SQL transaction with <i>server.adaptor.commit()</i> to make this change.
+</p><p>There should now be one less row in the <i>biodatabase</i> table, check this at the command line:
+</p>
+<pre>mysql --user=root bioseqdb -e "select * from biodatabase;"
+</pre>
+<p>You can also check that the three orchid sequences have gone from the other tables.
+</p>
+<a name="How_is_the_data_stored"></a><h1> <span class="mw-headline"> How is the data stored </span></h1>
+<p>If you need or want to go direct to the data, bypassing the Biopython methods to retrieve records, then it would help to know more about how the underlying tables are used.  For this, we refer you to the BioSQL documentation, starting with their <a href="http://www.biosql.org/wiki/Schema_Overview" class="external text" title="http://www.biosql.org/wiki/Schema_Overview" rel="nofollow">Schema Overview</a> and the page on <a href="http://www.biosql.org/wiki/Annotation_Mapping" class="external text" title="http://www.biosql.org/wiki/Annotation_Mapping" rel="nofollow">Annotation Mapping</a>.
+</p>
+<a name="MySQL_Tips_and_Tricks"></a><h1> <span class="mw-headline"> MySQL Tips and Tricks </span></h1>
+<p>If you are getting timeout errors, check to see if your SQL server has any orphaned threads.
+</p>
+<pre>mysql --user=root bioseqdb -e "SHOW INNODB STATUS\G" | grep "thread id"
+</pre>
+<p>And if there are, assuming you are the only person using this database, you might try killing them off using the thread id given by the above command:
+</p>
+<pre>mysql --user=root bioseqdb -e "KILL 123;"
+</pre>
+<p>Use at your own risk!
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key biopythonwikidb:pcache:idhash:1480-0!1!0!!en!2!edit=0 and timestamp 20090414191911 -->
+<div class="printfooter">
+Retrieved from "<a href="http://www.biopython.org/wiki/BioSQL">http://www.biopython.org/wiki/BioSQL</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+	
+				 <li id="ca-nstab-main" class="selected"><a href="/wiki/BioSQL" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="/w/index.php?title=Talk:BioSQL&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="/w/index.php?title=BioSQL&amp;action=edit" title="This page is protected.&#10;You can view its source. [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="/w/index.php?title=BioSQL&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=BioSQL" title="You are encouraged to log in, it is not mandatory however. [o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(/w/images/logo/biopython_tiny.png);" href="/wiki/Main_Page" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="/wiki/Biopython" title="Visit the Main Page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-Downloads"><a href="/wiki/Download">Downloads</a></li>
+				<li id="n-Documentation"><a href="/wiki/Documentation">Documentation</a></li>
+				<li id="n-Mailing-lists"><a href="/wiki/Mailing_lists">Mailing lists</a></li>
+				<li id="n-News"><a href="/wiki/News">News</a></li>
+				<li id="n-Bugs"><a href="http://bugzilla.open-bio.org/">Bugs</a></li>
+				<li id="n-Source-Code"><a href="/wiki/SourceCode">Source Code</a></li>
+				<li id="n-Participants"><a href="/wiki/Participants">Participants</a></li>
+				<li id="n-Script-Central"><a href="/wiki/Scriptcentral">Script Central</a></li>
+				<li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="The list of recent changes in the wiki. [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/wiki/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search Biopython [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/BioSQL" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/BioSQL" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="/wiki/Special:Upload" title="Upload files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="/w/index.php?title=BioSQL&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="/w/index.php?title=BioSQL&amp;oldid=2519" title="Permanent link to this version of the page">Permanent link</a></li><li id="t-pdf"><a href="/w/index.php?title=Special:PdfPrint&amp;page=BioSQL">Print as PDF</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="/w/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+				<div id="f-copyrightico"><a href="http://www.gnu.org/copyleft/fdl.html"><img src="/w/skins/common/images/gnu-fdl.png" alt='GNU Free Documentation License 1.2' /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified on 30 March 2009, at 22:56.</li>
+				<li id="viewcount">This page has been accessed 6,540 times.</li>
+				<li id="copyright">Content is available under <a href="http://www.gnu.org/copyleft/fdl.html" class="external " title="http://www.gnu.org/copyleft/fdl.html" rel="nofollow">GNU Free Documentation License 1.2</a>.</li>
+				<li id="privacy"><a href="/wiki/Biopython:Privacy_policy" title="Biopython:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="/wiki/Biopython:About" title="Biopython:About">About Biopython</a></li>
+				<li id="disclaimer"><a href="/wiki/Biopython:General_disclaimer" title="Biopython:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-358618-8");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script><!-- Served in 0.385 secs. --></body></html>

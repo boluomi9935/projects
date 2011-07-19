@@ -1,0 +1,38 @@
+DATABASES=( $(ls *.wc) )
+
+#DATABASES=(${DATABASES[@]#original/})
+DATABASES=(${DATABASES[@]%.wc})
+
+
+for element in $(seq 0 $((${#DATABASES[@]} -1)))
+ do
+   BASENAME=${DATABASES[$element]}
+   SIZE=`wc -l ${BASENAME}.wc | gawk '{print $1}'`
+   echo ${BASENAME}.wc HAS ${SIZE} LINES
+   if [ ${SIZE} -gt "3000001" ]; then
+       echo "  SPLITTING"
+       split -l 3000000 ${BASENAME}.wc ${BASENAME}_P_
+       echo "  SPLITTED"
+
+       echo "  PACKING"
+       PIECES=( $(ls ${BASENAME}_P_*) )
+       for piece in $(seq 0 $((${#PIECES[@]} -1)))
+       do
+           PNAME=${PIECES[$piece]}
+           echo "    PACKING ${PNAME}.wc"
+           mv ${PNAME} ${PNAME}.wc
+           gzip -9 ${PNAME}.wc
+           mv ${PNAME}.wc.gz out/
+       done   
+  
+       echo "  PACKED"
+       mv ${BASENAME}.wc ${BASENAME}.wcc
+       gzip -9 ${BASENAME}.wcc
+       mv ${BASENAME}.wcc.gz stock/
+   else
+       echo "  PACKING"
+       gzip -9 ${BASENAME}.wc
+       mv ${BASENAME}.wc.gz out/
+       echo "  PACKED"
+   fi
+done

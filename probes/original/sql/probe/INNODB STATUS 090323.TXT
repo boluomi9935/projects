@@ -1,0 +1,130 @@
+ mysql -u root --password=cbscbs12
+
+SHOW ENGINE INNODB STATUS;
+
+=====================================
+090323 17:03:06 INNODB MONITOR OUTPUT
+=====================================
+Per second averages calculated from the last 5 seconds
+----------
+SEMAPHORES
+----------
+OS WAIT ARRAY INFO: reservation count 40168163, signal count 27900188
+Mutex spin waits 0, rounds 764546023, OS waits 8428191
+RW-shared spins 1425877, OS waits 771035; RW-excl spins 35531802, OS waits 28934852
+------------------------
+LATEST DETECTED DEADLOCK
+------------------------
+090320 20:43:48
+*** (1) TRANSACTION:
+TRANSACTION 0 23642250, ACTIVE 0 sec, process no 14451, OS thread id 140330335312208 inserting
+mysql tables in use 1, locked 1
+LOCK WAIT 3 lock struct(s), heap size 1216, undo log entries 8
+MySQL thread id 878, query id 141705031 localhost probe update
+INSERT IGNORE INTO probe       (sequence, probeGc, probeTm)                                   VALUES ('GTGGCTCTTCTCCAGATAATGTCGCTTTCAATGCTAGACTTGATTTTGTTATCCCTACCAAGTCAATCACATGACAGT', '41', '87')          ON DUPLICATE KEY UPDATE idprobe=LAST_INSERT_ID(idprobe)            , count=count+1
+*** (1) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 388 page no 205 n bits 152 index `sequence_unique` of table `probe/probe` trx id 0 23642250 lock_mode X locks gap before rec insert intention waiting
+Record lock, heap no 77 PHYSICAL RECORD: n_fields 2; compact format; info bits 0
+ 0: len 30; hex 475447474354474341434341434154414754474341545441414354544341; asc GTGGCTGCACCACATAGTGCATTAACTTCA;...(truncated); 1: len 4; hex 00023a8f; asc   : ;;
+
+*** (2) TRANSACTION:
+TRANSACTION 0 23642258, ACTIVE 0 sec, process no 14451, OS thread id 140330333981008 setting auto-inc lock
+mysql tables in use 1, locked 1
+4 lock struct(s), heap size 1216, undo log entries 1
+MySQL thread id 875, query id 141705043 localhost probe update
+INSERT IGNORE INTO probe       (sequence, probeGc, probeTm)                                   VALUES ('GTGGCTGCACCACATAGTGCATTAACTTCAAGGTATTTTAATTCACGTCATGTTGTTTGTCTTCGAGTATTGG', '40', '86')          ON DUPLICATE KEY UPDATE idprobe=LAST_INSERT_ID(idprobe)            , count=count+1
+*** (2) HOLDS THE LOCK(S):
+RECORD LOCKS space id 388 page no 205 n bits 152 index `sequence_unique` of table `probe/probe` trx id 0 23642258 lock_mode X
+Record lock, heap no 77 PHYSICAL RECORD: n_fields 2; compact format; info bits 0
+ 0: len 30; hex 475447474354474341434341434154414754474341545441414354544341; asc GTGGCTGCACCACATAGTGCATTAACTTCA;...(truncated); 1: len 4; hex 00023a8f; asc   : ;;
+
+*** (2) WAITING FOR THIS LOCK TO BE GRANTED:
+TABLE LOCK table `probe/probe` trx id 0 23642258 lock mode AUTO-INC waiting
+*** WE ROLL BACK TRANSACTION (2)
+------------
+TRANSACTIONS
+------------
+Trx id counter 0 28311901
+Purge done for trx's n:o < 0 28309752 undo n:o < 0 0
+History list length 622
+Total number of lock structs in row lock hash table 0
+LIST OF TRANSACTIONS FOR EACH SESSION:
+---TRANSACTION 0 0, not started, process no 14451, OS thread id 140330904930640
+MySQL thread id 1014, query id 190734548 localhost root
+SHOW ENGINE INNODB STATUS
+---TRANSACTION 0 28311900, ACTIVE 1 sec, process no 14451, OS thread id 140330334513488 setting auto-inc lock
+mysql tables in use 1, locked 1
+LOCK WAIT 1 lock struct(s), heap size 368
+MySQL thread id 1004, query id 190734547 localhost probe update
+INSERT IGNORE INTO probe       (sequence, probeGc, probeTm)                                   VALUES ('GCTTCATTTGGTGGATCAAGTGTCACATTTATAACTGATATAGGGGAATCTGCGGGATCAA', '41', '85')          ON DUPLICATE KEY UPDATE idprobe=LAST_INSERT_ID(idprobe)            , count=count+1
+------- TRX HAS BEEN WAITING 1 SEC FOR THIS LOCK TO BE GRANTED:
+TABLE LOCK table `probe/probe` trx id 0 28311900 lock mode AUTO-INC waiting
+------------------
+---TRANSACTION 0 28311899, ACTIVE 1 sec, process no 14451, OS thread id 140330335312208 setting auto-inc lock
+mysql tables in use 1, locked 1
+LOCK WAIT 1 lock struct(s), heap size 368
+MySQL thread id 999, query id 190734545 localhost probe update
+INSERT IGNORE INTO probe       (sequence, probeGc, probeTm)                                   VALUES ('CAGGGAAGGAAAGTGGCTCAGTTTCAGACTCTGATAGCGATAGTGATAGTGATGTTAACGATA', '43', '86')          ON DUPLICATE KEY UPDATE idprobe=LAST_INSERT_ID(idprobe)            , count=count+1
+------- TRX HAS BEEN WAITING 1 SEC FOR THIS LOCK TO BE GRANTED:
+TABLE LOCK table `probe/probe` trx id 0 28311899 lock mode AUTO-INC waiting
+------------------
+---TRANSACTION 0 28311898, ACTIVE 1 sec, process no 14451, OS thread id 140330334247248 inserting, thread declared inside InnoDB 500
+mysql tables in use 1, locked 1
+2 lock struct(s), heap size 368, undo log entries 1
+MySQL thread id 1000, query id 190734541 localhost probe update
+INSERT IGNORE INTO probe       (sequence, probeGc, probeTm)                                   VALUES ('GAAACAACAGCTGCGAATGGGACCAATCTACCAAGAATCATTCTCGTGTTTGGTTTTAATGACTTTAATCTAGGTACCA', '39', '87')          ON DUPLICATE KEY UPDATE idprobe=LAST_INSERT_ID(idprobe)            , count=count+1
+--------
+FILE I/O
+--------
+I/O thread 0 state: waiting for i/o request (insert buffer thread)
+I/O thread 1 state: waiting for i/o request (log thread)
+I/O thread 2 state: waiting for i/o request (read thread)
+I/O thread 3 state: waiting for i/o request (write thread)
+Pending normal aio reads: 0, aio writes: 0,
+ ibuf aio reads: 0, log i/o's: 0, sync i/o's: 0
+Pending flushes (fsync) log: 0; buffer pool: 1
+914369 OS file reads, 14504611 OS file writes, 8721296 OS fsyncs
+44.99 reads/s, 16384 avg bytes/read, 230.15 writes/s, 140.37 fsyncs/s
+-------------------------------------
+INSERT BUFFER AND ADAPTIVE HASH INDEX
+-------------------------------------
+Ibuf: size 1, free list len 5, seg size 7,
+748892 inserts, 748892 merged recs, 50398 merges
+Hash table size 553253, used cells 3, node heap has 1 buffer(s)
+12.00 hash searches/s, 5409.92 non-hash searches/s
+---
+LOG
+---
+Log sequence number 16 634416313
+Log flushed up to   16 634416115
+Last checkpoint at  16 628844781
+0 pending log writes, 0 pending chkp writes
+8432460 log i/o's done, 136.37 log i/o's/second
+----------------------
+BUFFER POOL AND MEMORY
+----------------------
+Total memory allocated 326661266; in additional pool allocated 3178240
+Buffer pool size   16384
+Free buffers       1
+Database pages     16382
+Modified db pages  897
+Pending reads 0
+Pending writes: LRU 0, flush list 129, single page 0
+Pages read 2259831, created 899888, written 9814354
+44.99 reads/s, 15.20 creates/s, 129.57 writes/s
+Buffer pool hit rate 998 / 1000
+--------------
+ROW OPERATIONS
+--------------
+1 queries inside InnoDB, 0 queries in queue
+1 read views open inside InnoDB
+Main thread process no. 14451, id 140330893973840, state: sleeping
+Number of rows inserted 106012385, updated 71227097, deleted 0, read 342751708
+1059.79 inserts/s, 369.73 updates/s, 0.00 deletes/s, 369.73 reads/s
+----------------------------
+END OF INNODB MONITOR OUTPUT
+============================
+ | 
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+

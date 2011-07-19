@@ -1,0 +1,1 @@
+cat *.wc | split -a 10 -l 10000000 - out/biota_10M_

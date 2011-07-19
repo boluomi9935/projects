@@ -1,0 +1,10 @@
+tar -cJ binary.dat | pv > binary.dat.xz 
+	1.17GB 5:55:03 [57.4kB/s]
+
+tar -cz binary.dat | pv > binary.dat.tgz
+	17.4GB 2:01:24 [2.44MB/s]
+
+32.0G binary.dat
+18.0G binary.dat.tgz
+ 1.2G binary.dat.xz
+

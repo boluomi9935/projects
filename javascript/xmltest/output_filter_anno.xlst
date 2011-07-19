@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!-- http://stackoverflow.com/questions/586631/extract-a-subset-of-xml-file-using-xsl -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    version="1.0">
+
+    <xsl:output indent="yes" />
+    
+    <xsl:template match="/rnaSeq">
+        <xsl:copy><xsl:copy-of select="@*"/>
+        </xsl:copy>
+        <xsl:for-each select="chr">
+            <xsl:copy-of select="data"/>
+        </xsl:for-each>
+    </xsl:template>
+</xsl:stylesheet>

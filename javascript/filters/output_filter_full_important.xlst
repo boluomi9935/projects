@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!-- http://stackoverflow.com/questions/586631/extract-a-subset-of-xml-file-using-xsl -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:output method="xml" indent="yes" encoding = "UTF-8" omit-xml-declaration = "no"/>
+    <xsl:strip-space elements="*"/>
+    <xsl:variable name="limitD" select="30"/>
+    <xsl:variable name="limitR" select="1 div $limitD"/>
+
+    <xsl:template match="/rnaSeq">
+        <xsl:copy>
+            <xsl:copy-of select="@*"/>
+                <xsl:for-each select="chr">
+                <xsl:if test="
+                ((span/hash/pos/el/FPKM_1_per_FPKM_2 &gt;= $limitD) or (span/hash/pos/el/FPKM_1_per_FPKM_2 &lt;= $limitR))
+                or
+                (class/unique)
+                ">
+                    <xsl:copy>
+                        <xsl:copy-of select="@*"/>
+                        <xsl:copy-of select="node()"/>
+                    </xsl:copy>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>
+    
+</xsl:stylesheet>

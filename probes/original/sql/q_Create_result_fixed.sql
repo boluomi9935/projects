@@ -1,0 +1,1 @@
+CREATE TABLE result20090330 (INDEX (idOrganism), INDEX (probeid), INDEX (idOrganism, probeid)) SELECT idOrganism, nameOrganism, probeid, sequence, total FROM finalResult;

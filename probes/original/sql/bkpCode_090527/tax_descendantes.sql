@@ -1,0 +1,1 @@
+SELECT include.* FROM taxonomy INNER JOIN taxonomy AS include ON (include.left_value BETWEEN taxonomy.left_value AND taxonomy.right_value) WHERE taxonomy.name = "primate" ORDER BY left_value;

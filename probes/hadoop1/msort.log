@@ -1,0 +1,15 @@
+msort 8.46
+  lib gmp      4.3.1
+  lib icu      4.2.1
+  lib tre      0.7.6
+  lib uninum   2.7
+  glibc        2.11.1
+Compiled Jul 26 2009 23:14:01
+Copyright 1993-2008 William J. Poser (billposer@alum.mit.edu)
+This program is free software; you can redistribute
+it and/or modify it under the terms of version 3 of
+the GNU General Public License as published by the
+Free Software Foundation.
+Invoked by command line:
+  msort -a S -n 1 -l -1 Homo_sapiens_HuRef36.3_CHROMOSSOMES.fasta.0000.001.R.pcr.had -2 /dev/null
+Key 1 obligatory  first field   Increasing lexicographic

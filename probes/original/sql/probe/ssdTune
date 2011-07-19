@@ -1,0 +1,5 @@
+echo noop > /sys/block/sdc/queue/scheduler
+hdparm -W1 /dev/sdc
+
+#sudo -i echo deadline > /sys/block/sda/queue/scheduler
+#sudo -i echo 1 > /sys/block/sda/queue/iosched/fifo_batch
